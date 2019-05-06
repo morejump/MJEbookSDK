@@ -44,6 +44,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.mcxiaoke.koi.log.logd
 import com.mjebooksdk.Config
 import com.mjebooksdk.Constants
 import com.mjebooksdk.Constants.*
@@ -76,7 +80,7 @@ import java.lang.ref.WeakReference
 
 class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControllerCallback,
     View.OnSystemUiVisibilityChangeListener {
-
+    private lateinit var mInterstitialAd: InterstitialAd
     private var bookFileName: String? = null
 
     private var mFolioPageViewPager: DirectionalViewpager? = null
@@ -295,6 +299,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         } else {
             setupBook()
         }
+
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
     }
 
     private fun initActionBar() {
@@ -770,6 +778,14 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
      * @return true if href is of EPUB or false if other link
      */
     override fun goToChapter(href: String): Boolean {
+        mInterstitialAd.show();
+        mInterstitialAd.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                mInterstitialAd.loadAd(AdRequest.Builder().build())
+            }
+        }
+        Toast.makeText(this, "go to chapter", Toast.LENGTH_SHORT).show()
+        logd("hello there")
         for (link in spine!!) {
             if (href.contains(link.href!!)) {
                 currentChapterIndex = spine!!.indexOf(link)
