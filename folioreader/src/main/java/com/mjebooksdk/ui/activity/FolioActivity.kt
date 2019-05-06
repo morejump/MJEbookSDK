@@ -349,6 +349,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             ColorDrawable(ContextCompat.getColor(this, R.color.white))
         )
         toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.black))
+        // TODO  add inter ads here
     }
 
     override fun setNightMode() {
@@ -358,6 +359,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             ColorDrawable(ContextCompat.getColor(this, R.color.black))
         )
         toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.night_title_text_color))
+        // TODO  add inter ads here
     }
 
     private fun initMediaController() {
@@ -552,6 +554,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     }
 
     override fun onDirectionChange(newDirection: Config.Direction) {
+        // TODO  add inter ads here
+        Toast.makeText(this, "on direction changed", Toast.LENGTH_LONG).show()
         Log.v(LOG_TAG, "-> onDirectionChange")
 
         var folioPageFragment: FolioPageFragment? = currentFragment ?: return
@@ -778,6 +782,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
      * @return true if href is of EPUB or false if other link
      */
     override fun goToChapter(href: String): Boolean {
+        // TODO add inter ads here
         mInterstitialAd.show();
         mInterstitialAd.adListener = object : AdListener() {
             override fun onAdClosed() {

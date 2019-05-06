@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -319,6 +320,7 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
                 intent.putExtra(FolioActivity.EXTRA_SEARCH_ITEM, viewHolder.searchLocator as Parcelable)
                 intent.putExtra(BUNDLE_SAVE_SEARCH_QUERY, searchView.query)
                 setResult(ResultCode.ITEM_SELECTED.value, intent)
+                // TODO add inter ads here
                 finish()
             }
         }
