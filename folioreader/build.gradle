@@ -84,6 +84,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
     implementation "androidx.recyclerview:recyclerview:$versions.recyclerview"
     implementation "com.google.android.material:material:$versions.material"
+    implementation 'com.google.firebase:firebase-ads:17.0.0'
     testImplementation 'junit:junit:4.12'
 
     implementation 'org.slf4j:slf4j-android:1.7.25'
@@ -120,3 +121,4 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
 }
 apply from: '../folioreader/bintray/bintrayv1.gradle'
+apply plugin: 'com.google.gms.google-services'

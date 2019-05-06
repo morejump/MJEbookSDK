@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "394030067151",
+    "firebase_url": "https://mjebooksdk.firebaseio.com",
+    "project_id": "mjebooksdk",
+    "storage_bucket": "mjebooksdk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394030067151:android:b5798935780a894b",
+        "android_client_info": {
+          "package_name": "com.mjebooksdk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "394030067151-oh6qo5mp6egs3f3fcafjafjo6ls42svd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjUvHw0UKVAsnBszYewlgZcnlY09hT2R0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "394030067151-oh6qo5mp6egs3f3fcafjafjo6ls42svd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "352346740539",
+    "firebase_url": "https://mjebooksdk-a8f80.firebaseio.com",
+    "project_id": "mjebooksdk-a8f80",
+    "storage_bucket": "mjebooksdk-a8f80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352346740539:android:68f2c3fc091f84da",
+        "android_client_info": {
+          "package_name": "com.folioreader.android.sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352346740539-36jc2t9i1h7olgedmht2ag6ajfiaquk4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.folioreader.android.sample",
+            "certificate_hash": "e04d1d391fe937daba479f9b0c4ae11215d3dc10"
+          }
+        },
+        {
+          "client_id": "352346740539-4pe6untrotirn678k6tl4krtnpas3uc0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdWK774o1jDLI_tp353VLetvMajX03E10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352346740539-4pe6untrotirn678k6tl4krtnpas3uc0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
