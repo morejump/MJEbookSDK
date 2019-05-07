@@ -118,5 +118,6 @@
     <string name="callClearSelection" translatable="false">javascript:clearSelection()</string>
     <string name="banner_id"></string>
     <string name="inter_id"></string>
+    <string name="menu_more">Đọc truyện khác</string>
 
 </resources>

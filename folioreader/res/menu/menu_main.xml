@@ -1,30 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.mjebooksdk.ui.activity.FolioActivity">
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.mjebooksdk.ui.activity.FolioActivity">
 
     <item
-        android:id="@+id/itemSearch"
-        android:icon="@drawable/ic_search"
-        android:title="@string/menu_item_search"
-        app:showAsAction="ifRoom"
-        tools:showAsAction="always" />
+            android:id="@+id/itemSearch"
+            android:icon="@drawable/ic_search"
+            android:title="@string/menu_item_search"
+            app:showAsAction="ifRoom"
+            tools:showAsAction="always"/>
 
     <item
-        android:id="@+id/itemConfig"
-        android:icon="@drawable/icon_font"
-        android:title="@string/menu_item_config"
-        app:showAsAction="ifRoom"
-        tools:showAsAction="always" />
+            android:id="@+id/itemBookmark"
+            android:icon="@drawable/ic_bookmark"
+            android:title="@string/menu_item_search"
+            app:showAsAction="ifRoom"
+            tools:showAsAction="always"/>
 
     <item
-        android:id="@+id/itemTts"
-        android:iconTint="#5dd63c"
-        android:icon="@drawable/ic_more_story"
-        android:title="@string/menu_item_tts"
-        android:visible="true"
-        app:showAsAction="ifRoom"
-        tools:showAsAction="always" />
+            android:id="@+id/itemTts"
+            android:iconTint="#5dd63c"
+            android:icon="@drawable/ic_more_story"
+            android:title="@string/menu_more"
+            android:visible="true"
+            app:showAsAction="never"
+            tools:showAsAction="never"/>
+    <item
+            android:id="@+id/itemConfig"
+            android:icon="@drawable/icon_font"
+            android:title="@string/menu_item_config"
+            app:showAsAction="never"
+            tools:showAsAction="never"/>
 
 </menu>
