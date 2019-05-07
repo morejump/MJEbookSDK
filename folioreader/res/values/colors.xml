@@ -28,5 +28,6 @@
     <color name="highlight_green">#C0ED72</color>
     <color name="highlight_blue">#ADD8FF</color>
     <color name="highlight_pink">#FFB0CA</color>
+    <color name="green_color">#5dd63c</color>
 
 </resources>
