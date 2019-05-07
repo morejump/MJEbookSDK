@@ -48,14 +48,19 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
         folioReader = FolioReader.get()
                 .setOnHighlightListener(this)
                 .setReadLocatorListener(this)
                 .setOnClosedListener(this);
 
         getHighlightsAndSave();
+        Config config = AppUtil.getSavedConfig(getApplicationContext());
+        if (config == null)
+            config = new Config();
+        config.setAllowedDirection(Config.AllowedDirection.VERTICAL_AND_HORIZONTAL);
+
+        folioReader.setConfig(config, true)
+                .openBook(R.raw.accessible_epub_3);
 
         findViewById(R.id.btn_raw).setOnClickListener(new View.OnClickListener() {
             @Override

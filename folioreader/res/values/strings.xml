@@ -115,5 +115,7 @@
     <string name="callScrollToCfi" translatable="false">javascript:scrollToCfi(\"%s\")</string>
     <string name="callHighlightSearchLocator" translatable="false">javascript:highlightSearchLocator(\"%s\")</string>
     <string name="callClearSelection" translatable="false">javascript:clearSelection()</string>
+    <string name="banner_id"></string>
+    <string name="inter_id"></string>
 
 </resources>

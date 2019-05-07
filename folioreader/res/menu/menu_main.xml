@@ -20,9 +20,10 @@
 
     <item
         android:id="@+id/itemTts"
-        android:icon="@drawable/man_speech_icon"
+        android:iconTint="#5dd63c"
+        android:icon="@drawable/ic_more_story"
         android:title="@string/menu_item_tts"
-        android:visible="false"
+        android:visible="true"
         app:showAsAction="ifRoom"
         tools:showAsAction="always" />
 
