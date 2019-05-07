@@ -25,6 +25,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mjebooksdk.Config;
 import com.mjebooksdk.FolioReader;
+import com.mjebooksdk.android.sample.Utils.SharePreferenceManager;
 import com.mjebooksdk.model.HighLight;
 import com.mjebooksdk.model.locators.ReadLocator;
 import com.mjebooksdk.ui.base.OnSaveHighlight;
@@ -48,6 +49,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharePreferenceManager.init(this);
         folioReader = FolioReader.get()
                 .setOnHighlightListener(this)
                 .setReadLocatorListener(this)
@@ -64,18 +66,17 @@ public class HomeActivity extends AppCompatActivity
 
         folioReader.setReadLocator(lastReadLocator);
         folioReader.setConfig(config, true)
-                .openBook("file:///android_asset/trutien.epub");
+                .openBook("file:///android_asset/daichuate.epub");
 
     }
 
     private ReadLocator getLastReadLocator() {
-        String jsonString = loadAssetTextAsString("Locators/LastReadLocators/last_read_locator_1.json");
-        return ReadLocator.fromJson(jsonString);
+        return ReadLocator.fromJson(SharePreferenceManager.getLastReadLocator(SharePreferenceManager.LAST_READ_LOCATOR_KEY));
     }
 
     @Override
     public void saveReadLastLocator(ReadLocator readLocator) {
-
+        SharePreferenceManager.setLastReadLocator(readLocator.toJson());
         Log.i(LOG_TAG, "-> saveReadLastLocator -> " + readLocator.toJson());
     }
 
