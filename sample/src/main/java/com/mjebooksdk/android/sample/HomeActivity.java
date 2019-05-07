@@ -54,56 +54,36 @@ public class HomeActivity extends AppCompatActivity
                 .setOnClosedListener(this);
 
         getHighlightsAndSave();
+
+        ReadLocator lastReadLocator = getLastReadLocator();
+
         Config config = AppUtil.getSavedConfig(getApplicationContext());
         if (config == null)
             config = new Config();
-        config.setAllowedDirection(Config.AllowedDirection.VERTICAL_AND_HORIZONTAL);
+        config.setAllowedDirection(Config.AllowedDirection.ONLY_VERTICAL);
 
+        folioReader.setReadLocator(lastReadLocator);
         folioReader.setConfig(config, true)
-                .openBook(R.raw.accessible_epub_3);
+                .openBook("file:///android_asset/TheSilverChair.epub");
 
-        findViewById(R.id.btn_raw).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Config config = AppUtil.getSavedConfig(getApplicationContext());
-                if (config == null)
-                    config = new Config();
-                config.setAllowedDirection(Config.AllowedDirection.VERTICAL_AND_HORIZONTAL);
-
-                folioReader.setConfig(config, true)
-                        .openBook(R.raw.accessible_epub_3);
-            }
-        });
-
-        findViewById(R.id.btn_assest).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ReadLocator readLocator = getLastReadLocator();
-
-                Config config = AppUtil.getSavedConfig(getApplicationContext());
-                if (config == null)
-                    config = new Config();
-                config.setAllowedDirection(Config.AllowedDirection.VERTICAL_AND_HORIZONTAL);
-
-                folioReader.setReadLocator(readLocator);
-                folioReader.setConfig(config, true)
-                        .openBook("file:///android_asset/TheSilverChair.epub");
-            }
-        });
     }
 
     private ReadLocator getLastReadLocator() {
-
         String jsonString = loadAssetTextAsString("Locators/LastReadLocators/last_read_locator_1.json");
         return ReadLocator.fromJson(jsonString);
     }
 
     @Override
-    public void saveReadLocator(ReadLocator readLocator) {
-        Log.i(LOG_TAG, "-> saveReadLocator -> " + readLocator.toJson());
+    public void saveReadLastLocator(ReadLocator readLocator) {
+
+        Log.i(LOG_TAG, "-> saveReadLastLocator -> " + readLocator.toJson());
     }
+
+    @Override
+    public void saveReadCurrentLocator(ReadLocator readLocator) {
+        Log.i(LOG_TAG, "-> saveReadLastLocator -> " + readLocator.toJson());
+    }
+
 
     /*
      * For testing purpose, we are getting dummy highlights from asset. But you can get highlights from your server

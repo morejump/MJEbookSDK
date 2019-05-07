@@ -7,5 +7,6 @@ import com.mjebooksdk.model.locators.ReadLocator;
  */
 public interface ReadLocatorListener {
 
-    void saveReadLocator(ReadLocator readLocator);
+    void saveReadLastLocator(ReadLocator readLocator);
+    void saveReadCurrentLocator(ReadLocator readLocator);
 }

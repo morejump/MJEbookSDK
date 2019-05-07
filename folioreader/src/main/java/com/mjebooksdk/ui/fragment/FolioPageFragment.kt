@@ -597,6 +597,20 @@ class FolioPageFragment : Fragment(),
         return lastReadLocator
     }
 
+    fun getCurrentReadLocator(): ReadLocator? {
+        Log.v(LOG_TAG, "-> getLastReadLocator -> " + spineItem.href!!)
+        try {
+            synchronized(this) {
+                mWebview!!.loadUrl(getString(R.string.callComputeCurrentReadCfi))
+                (this as java.lang.Object).wait(5000)
+            }
+        } catch (e: InterruptedException) {
+            Log.e(LOG_TAG, "-> ", e)
+        }
+
+        return lastReadLocator
+    }
+
     @JavascriptInterface
     fun storeLastReadCfi(cfi: String) {
 
@@ -608,8 +622,27 @@ class FolioPageFragment : Fragment(),
             locations.cfi = cfi
             lastReadLocator = ReadLocator(mBookId!!, href, created, locations)
 
-            val intent = Intent(FolioReader.ACTION_SAVE_READ_LOCATOR)
-            intent.putExtra(FolioReader.EXTRA_READ_LOCATOR, lastReadLocator as Parcelable?)
+            val intent = Intent(FolioReader.ACTION_SAVE_READ_LAST_LOCATOR)
+            intent.putExtra(FolioReader.EXTRA_LAST_READ_LOCATOR, lastReadLocator as Parcelable?)
+            LocalBroadcastManager.getInstance(context!!).sendBroadcast(intent)
+
+            (this as java.lang.Object).notify()
+        }
+    }
+
+    @JavascriptInterface
+    fun storeCurrentReadCfi(cfi: String) {
+
+        synchronized(this) {
+            var href = spineItem.href
+            if (href == null) href = ""
+            val created = Date().time
+            val locations = Locations()
+            locations.cfi = cfi
+            lastReadLocator = ReadLocator(mBookId!!, href, created, locations)
+
+            val intent = Intent(FolioReader.ACTION_SAVE_READ_CURRENT_LOCATOR)
+            intent.putExtra(FolioReader.EXTRA_CURRENT_READ_LOCATOR, lastReadLocator as Parcelable?)
             LocalBroadcastManager.getInstance(context!!).sendBroadcast(intent)
 
             (this as java.lang.Object).notify()

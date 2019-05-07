@@ -1,8 +1,9 @@
 {
   "bookId": "_simple_book",
-  "href": "/OEBPS/ch03.xhtml",
-  "created": 1539934158390,
+  "href": "/OEBPS/ch04.xhtml",
+  "created": 1556263001675,
   "locations": {
-    "cfi": "epubcfi(/0!/4/4)"
-  }
+    "cfi": "epubcfi(/0!/4/4[id70364673776500]/2/2/4/2/2/1:0)"
+  },
+  "title": ""
 }

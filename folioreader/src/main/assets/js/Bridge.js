@@ -853,6 +853,23 @@ function computeLastReadCfi() {
     FolioPageFragment.storeLastReadCfi(cfi);
 }
 
+function computeCurrentReadCfi() {
+
+    viewportRect = constructDOMRect(FolioWebView.getViewportRect(DisplayUnit.CSS_PX));
+    var node = getFirstVisibleNode(document.body) || document.body;
+
+    var cfi;
+    if (node.nodeType === Node.TEXT_NODE) {
+        cfi = EPUBcfi.Generator.generateCharacterOffsetCFIComponent(node, 0);
+    } else {
+        cfi = EPUBcfi.Generator.generateElementCFIComponent(node);
+    }
+
+    cfi = EPUBcfi.Generator.generateCompleteCFI("/0!", cfi);
+    viewportRect = null;
+    FolioPageFragment.storeCurrentReadCfi(cfi);
+}
+
 function constructDOMRect(rectJsonString) {
     var rectJson = JSON.parse(rectJsonString);
     return new DOMRect(rectJson.x, rectJson.y, rectJson.width, rectJson.height);

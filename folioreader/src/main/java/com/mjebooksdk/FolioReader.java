@@ -37,9 +37,11 @@ public class FolioReader {
     private static FolioReader singleton = null;
 
     public static final String EXTRA_BOOK_ID = "com.folioreader.extra.BOOK_ID";
-    public static final String EXTRA_READ_LOCATOR = "com.folioreader.extra.READ_LOCATOR";
+    public static final String EXTRA_LAST_READ_LOCATOR = "com.folioreader.extra.READ_LAST_LOCATOR";
+    public static final String EXTRA_CURRENT_READ_LOCATOR = "com.folioreader.extra.READ_CURRENT_LOCATOR";
     public static final String EXTRA_PORT_NUMBER = "com.folioreader.extra.PORT_NUMBER";
-    public static final String ACTION_SAVE_READ_LOCATOR = "com.folioreader.action.SAVE_READ_LOCATOR";
+    public static final String ACTION_SAVE_READ_LAST_LOCATOR = "com.folioreader.action.SAVE_READ_LAST_LOCATOR";
+    public static final String ACTION_SAVE_READ_CURRENT_LOCATOR = "com.folioreader.action.SAVE_READ_CURRENT_LOCATOR";
     public static final String ACTION_CLOSE_FOLIOREADER = "com.folioreader.action.CLOSE_FOLIOREADER";
     public static final String ACTION_FOLIOREADER_CLOSED = "com.folioreader.action.FOLIOREADER_CLOSED";
 
@@ -79,14 +81,25 @@ public class FolioReader {
         }
     };
 
-    private BroadcastReceiver readLocatorReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver readLastLocatorReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
 
             ReadLocator readLocator =
-                    (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_READ_LOCATOR);
+                    (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_LAST_READ_LOCATOR);
             if (readLocatorListener != null)
-                readLocatorListener.saveReadLocator(readLocator);
+                readLocatorListener.saveReadLastLocator(readLocator);
+        }
+    };
+
+    private BroadcastReceiver readCurrentLocatorReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            ReadLocator readLocator =
+                    (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_CURRENT_READ_LOCATOR);
+            if (readLocatorListener != null)
+                readLocatorListener.saveReadCurrentLocator(readLocator);
         }
     };
 
@@ -123,8 +136,10 @@ public class FolioReader {
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(context);
         localBroadcastManager.registerReceiver(highlightReceiver,
                 new IntentFilter(HighlightImpl.BROADCAST_EVENT));
-        localBroadcastManager.registerReceiver(readLocatorReceiver,
-                new IntentFilter(ACTION_SAVE_READ_LOCATOR));
+        localBroadcastManager.registerReceiver(readLastLocatorReceiver,
+                new IntentFilter(ACTION_SAVE_READ_LAST_LOCATOR));
+        localBroadcastManager.registerReceiver(readCurrentLocatorReceiver,
+                new IntentFilter(ACTION_SAVE_READ_CURRENT_LOCATOR));
         localBroadcastManager.registerReceiver(closedReceiver,
                 new IntentFilter(ACTION_FOLIOREADER_CLOSED));
     }
@@ -292,7 +307,8 @@ public class FolioReader {
     private void unregisterListeners() {
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(context);
         localBroadcastManager.unregisterReceiver(highlightReceiver);
-        localBroadcastManager.unregisterReceiver(readLocatorReceiver);
+        localBroadcastManager.unregisterReceiver(readLastLocatorReceiver);
+        localBroadcastManager.unregisterReceiver(readCurrentLocatorReceiver);
         localBroadcastManager.unregisterReceiver(closedReceiver);
     }
 }

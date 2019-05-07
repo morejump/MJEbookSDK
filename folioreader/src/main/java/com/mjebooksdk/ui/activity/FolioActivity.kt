@@ -70,6 +70,7 @@ import com.mjebooksdk.ui.view.MediaControllerCallback
 import com.mjebooksdk.util.AppUtil
 import com.mjebooksdk.util.FileUtil
 import com.mjebooksdk.util.UiUtil
+import kotlinx.android.synthetic.main.folio_activity.*
 import org.greenrobot.eventbus.EventBus
 import org.readium.r2.shared.Link
 import org.readium.r2.shared.Publication
@@ -80,9 +81,10 @@ import org.readium.r2.streamer.server.Server
 import java.lang.ref.WeakReference
 
 class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControllerCallback,
-    View.OnSystemUiVisibilityChangeListener {
+    View.OnSystemUiVisibilityChangeListener, View.OnClickListener {
+
     private lateinit var mInterstitialAd: InterstitialAd
-    lateinit var mAdView : AdView
+    lateinit var mAdView: AdView
     private var bookFileName: String? = null
     private var mFolioPageViewPager: DirectionalViewpager? = null
     private var actionBar: ActionBar? = null
@@ -286,6 +288,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         initActionBar()
         initMediaController()
+        btnGetReadLocation.setOnClickListener(this)
 
         if (ContextCompat.checkSelfPermission(
                 this@FolioActivity,
@@ -566,6 +569,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         var folioPageFragment: FolioPageFragment? = currentFragment ?: return
         entryReadLocator = folioPageFragment!!.getLastReadLocator()
+        // TODO get last Read  Locator here
+
         val searchLocatorVisible = folioPageFragment.searchLocatorVisible
 
         direction = newDirection
@@ -1085,5 +1090,19 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 bundle?.putParcelable(FolioPageFragment.BUNDLE_SEARCH_LOCATOR, null)
             }
         }
+    }
+
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btnGetReadLocation -> {
+                var folioPageFragment: FolioPageFragment? = currentFragment ?: return
+                entryReadLocator = folioPageFragment!!.getCurrentReadLocator()
+            }
+        }
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        Toast.makeText(this, "dell back lai nhe", Toast.LENGTH_LONG).show()
     }
 }
