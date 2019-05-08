@@ -56,6 +56,7 @@ import com.mjebooksdk.FolioReader
 import com.mjebooksdk.R
 import com.mjebooksdk.model.DisplayUnit
 import com.mjebooksdk.model.HighlightImpl
+import com.mjebooksdk.model.ReadLocation
 import com.mjebooksdk.model.event.MediaOverlayPlayPauseEvent
 import com.mjebooksdk.model.locators.ReadLocator
 import com.mjebooksdk.model.locators.SearchLocator
@@ -70,6 +71,7 @@ import com.mjebooksdk.ui.view.MediaControllerCallback
 import com.mjebooksdk.util.AppUtil
 import com.mjebooksdk.util.FileUtil
 import com.mjebooksdk.util.UiUtil
+import io.realm.Realm
 import org.greenrobot.eventbus.EventBus
 import org.readium.r2.shared.Link
 import org.readium.r2.shared.Publication
@@ -78,10 +80,11 @@ import org.readium.r2.streamer.parser.EpubParser
 import org.readium.r2.streamer.parser.PubBox
 import org.readium.r2.streamer.server.Server
 import java.lang.ref.WeakReference
+import java.util.*
 
 class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControllerCallback,
     View.OnSystemUiVisibilityChangeListener, View.OnClickListener {
-
+    private lateinit var realm: Realm
     private lateinit var mInterstitialAd: InterstitialAd
     lateinit var mAdView: AdView
     private var bookFileName: String? = null
@@ -247,7 +250,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        realm = Realm.getDefaultInstance()
         // Need to add when vector drawables support library is used.
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
 
@@ -420,6 +423,14 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             R.id.itemAddBookmark -> {
                 var folioPageFragment: FolioPageFragment? = currentFragment ?: return false
                 entryReadLocator = folioPageFragment!!.getCurrentReadLocator()
+                // TODO get current read location here
+                var readLocation: ReadLocation = ReadLocation()
+                readLocation.title = "hello there"
+                readLocation.id = UUID.randomUUID().toString()
+                readLocation.location = entryReadLocator?.toJson()
+                realm.executeTransaction { realm ->
+                    realm.copyToRealmOrUpdate(readLocation)
+                }
                 return true
             }
         }
@@ -859,6 +870,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onDestroy() {
         super.onDestroy()
+        realm.close()
 
         if (outState != null)
             outState!!.putSerializable(BUNDLE_READ_LOCATOR_CONFIG_CHANGE, lastReadLocator)
@@ -1101,4 +1113,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         //super.onBackPressed()
         Toast.makeText(this, "dell back lai nhe", Toast.LENGTH_LONG).show()
     }
+
+
 }
