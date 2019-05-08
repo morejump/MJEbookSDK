@@ -3,7 +3,8 @@ apply from: '../config/quality/quality.gradle'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'realm-android'
+apply plugin: 'kotlin-kapt'
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'folioreader'
