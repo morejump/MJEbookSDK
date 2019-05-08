@@ -303,7 +303,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         }
         // Intersitial ads
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+        mInterstitialAd.adUnitId = getString(R.string.inter_ads_id)
         mInterstitialAd.loadAd(AdRequest.Builder().build())
         // Banner ads
         mAdView = findViewById(R.id.adView)
@@ -415,9 +415,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 return true
             }
             R.id.itemReadOtherStory -> {
-                Log.v(LOG_TAG, "-> onOptionsItemSelected -> " + item.title)
-                showMediaController()
-                return true
+                return false
             }
             R.id.itemAddBookmark -> {
                 var folioPageFragment: FolioPageFragment? = currentFragment ?: return false
