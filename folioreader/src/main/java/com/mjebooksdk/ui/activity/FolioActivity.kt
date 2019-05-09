@@ -57,6 +57,9 @@ import com.mjebooksdk.R
 import com.mjebooksdk.model.DisplayUnit
 import com.mjebooksdk.model.HighlightImpl
 import com.mjebooksdk.model.ReadLocation
+
+import com.mjebooksdk.model.dao.IReadLocationDao
+import com.mjebooksdk.model.dao.ReadLocationImpl
 import com.mjebooksdk.model.event.MediaOverlayPlayPauseEvent
 import com.mjebooksdk.model.locators.ReadLocator
 import com.mjebooksdk.model.locators.SearchLocator
@@ -124,6 +127,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private var density: Float = 0.toFloat()
     private var topActivity: Boolean? = null
     private var taskImportance: Int = 0
+    private  lateinit var readLocationDatabase : IReadLocationDao
 
     companion object {
 
@@ -250,6 +254,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        readLocationDatabase = ReadLocationImpl();
         realm = Realm.getDefaultInstance()
         // Need to add when vector drawables support library is used.
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
@@ -428,9 +433,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 readLocation.title = "hello there"
                 readLocation.id = UUID.randomUUID().toString()
                 readLocation.location = entryReadLocator?.toJson()
-                realm.executeTransaction { realm ->
-                    realm.copyToRealmOrUpdate(readLocation)
-                }
+                readLocationDatabase.add(readLocation)
                 return true
             }
         }
@@ -810,8 +813,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 mInterstitialAd.loadAd(AdRequest.Builder().build())
             }
         }
-        Toast.makeText(this, "go to chapter", Toast.LENGTH_SHORT).show()
-        logd("hello there")
         for (link in spine!!) {
             if (href.contains(link.href!!)) {
                 currentChapterIndex = spine!!.indexOf(link)
