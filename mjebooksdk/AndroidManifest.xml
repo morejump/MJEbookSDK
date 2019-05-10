@@ -13,7 +13,7 @@
             android:allowBackup="true"
             android:networkSecurityConfig="@xml/network_security_config"
             tools:replace="android:allowBackup">
-        <activity android:name=".ui.activity.SettingsActivity">
+        <activity android:name=".ui.activity.BookmarkActivity">
         </activity>
 
         <meta-data

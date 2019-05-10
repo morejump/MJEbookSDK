@@ -1,9 +1,11 @@
 package com.mjebooksdk.ui.adapter;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.mjebooksdk.R;
 import com.mjebooksdk.database.ReadLocation;
 
 import java.util.List;
@@ -12,13 +14,15 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
 
     List<ReadLocation> data;
 
-    public BookmarkAdapter(List<ReadLocation> data){
+    public BookmarkAdapter(List<ReadLocation> data) {
         this.data = data;
     }
+
     @NonNull
     @Override
     public BookmarkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bookmark, parent, false);
+        return new BookmarkViewHolder(view);
     }
 
     @Override
@@ -31,7 +35,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
         return data.size();
     }
 
-    public void setData(List<ReadLocation> data){
+    public void setData(List<ReadLocation> data) {
         this.data = data;
         notifyDataSetChanged();
     }
@@ -42,7 +46,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
             super(itemView);
         }
 
-        public void bindData(ReadLocation readLocation){
+        public void bindData(ReadLocation readLocation) {
 
         }
     }

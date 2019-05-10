@@ -445,7 +445,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 return true
             }
             R.id.itemBookmarkList -> {
-                var intent = Intent(this, SettingsActivity::class.java);
+                var intent = Intent(this, BookmarkActivity::class.java);
                 startActivityForResult(intent, RequestCode.BOOK_MARK.value);
             }
         }
