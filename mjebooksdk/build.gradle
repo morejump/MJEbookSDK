@@ -77,7 +77,7 @@ android {
     }
 }
 
-apply from: '../folioreader/bintray/installv1.gradle'
+apply from: '../mjebooksdk/bintray/installv1.gradle'
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -123,5 +123,5 @@ dependencies {
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
 }
-apply from: '../folioreader/bintray/bintrayv1.gradle'
+apply from: '../mjebooksdk/bintray/bintrayv1.gradle'
 apply plugin: 'com.google.gms.google-services'
