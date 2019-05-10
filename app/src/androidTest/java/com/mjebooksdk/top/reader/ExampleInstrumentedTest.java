@@ -1,4 +1,4 @@
-package com.mjebooksdk.android.sample;
+package com.mjebooksdk.top.reader;
 
 import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;

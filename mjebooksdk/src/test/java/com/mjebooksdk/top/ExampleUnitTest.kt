@@ -1,4 +1,4 @@
-package com.mjebooksdk.android
+package com.mjebooksdk.top
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

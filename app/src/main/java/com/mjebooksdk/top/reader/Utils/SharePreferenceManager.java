@@ -1,4 +1,4 @@
-package com.mjebooksdk.android.sample.Utils;
+package com.mjebooksdk.top.reader.Utils;
 
 import android.app.Activity;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.mjebooksdk.android
+package com.mjebooksdk.top
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.DeserializationFeature

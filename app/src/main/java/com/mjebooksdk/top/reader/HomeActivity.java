@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mjebooksdk.android.sample;
+package com.mjebooksdk.top.reader;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +24,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mjebooksdk.Config;
 import com.mjebooksdk.FolioReader;
-import com.mjebooksdk.android.sample.Utils.SharePreferenceManager;
+import com.mjebooksdk.top.reader.Utils.SharePreferenceManager;
 import com.mjebooksdk.database.HighLight;
 import com.mjebooksdk.database.locators.ReadLocator;
 import com.mjebooksdk.ui.base.OnSaveHighlight;

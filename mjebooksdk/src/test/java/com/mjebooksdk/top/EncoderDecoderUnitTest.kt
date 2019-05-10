@@ -1,4 +1,4 @@
-package com.mjebooksdk.android
+package com.mjebooksdk.top
 
 import org.junit.Test
 import java.net.URI
