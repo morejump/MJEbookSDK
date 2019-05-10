@@ -63,6 +63,8 @@ import com.mjebooksdk.database.locators.ReadLocator
 import com.mjebooksdk.database.locators.SearchLocator
 import com.mjebooksdk.ui.adapter.FolioPageFragmentAdapter
 import com.mjebooksdk.ui.adapter.SearchAdapter
+import com.mjebooksdk.ui.callbacks.IAddBookmarkListener
+import com.mjebooksdk.ui.dialogs.AddBookmarkDialog
 import com.mjebooksdk.ui.fragment.FolioPageFragment
 import com.mjebooksdk.ui.fragment.MediaControllerFragment
 import com.mjebooksdk.ui.view.ConfigBottomSheetDialogFragment
@@ -85,7 +87,8 @@ import java.lang.ref.WeakReference
 import java.util.*
 
 class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControllerCallback,
-    View.OnSystemUiVisibilityChangeListener, View.OnClickListener {
+    View.OnSystemUiVisibilityChangeListener, View.OnClickListener, IAddBookmarkListener {
+
     private lateinit var realm: Realm
     private lateinit var mInterstitialAd: InterstitialAd
     lateinit var mAdView: AdView
@@ -127,6 +130,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private var topActivity: Boolean? = null
     private var taskImportance: Int = 0
     private  lateinit var readLocationDatabase : IReadLocationDao
+    private lateinit var addBookmarkDialog: AddBookmarkDialog
 
     companion object {
 
@@ -254,6 +258,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        addBookmarkDialog = AddBookmarkDialog(this)
+        addBookmarkDialog.setAddBookmarkListener(this)
         readLocationDatabase = DatabaseManager.getInstance();
         var list = readLocationDatabase.all
         realm = Realm.getDefaultInstance()
@@ -427,6 +433,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 return false
             }
             R.id.itemAddBookmark -> {
+                addBookmarkDialog.show();
                 var folioPageFragment: FolioPageFragment? = currentFragment ?: return false
                 entryReadLocator = folioPageFragment!!.getCurrentReadLocator()
                 // TODO get current read location here
@@ -1117,6 +1124,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         when (v?.id) {
 
         }
+    }
+
+    override fun addBookmark() {
+        // TODO Add bookmark
     }
 
 

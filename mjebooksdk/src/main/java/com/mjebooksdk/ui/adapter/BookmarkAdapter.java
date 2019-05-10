@@ -9,6 +9,7 @@ import com.mjebooksdk.database.ReadLocation;
 import java.util.List;
 
 public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.BookmarkViewHolder> {
+
     List<ReadLocation> data;
 
     public BookmarkAdapter(List<ReadLocation> data){
