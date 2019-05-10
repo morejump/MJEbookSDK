@@ -32,7 +32,8 @@
     <string name="one_and_half">1&#160;1/2x</string>
     <string name="two_x">2x</string>
     <string name="style">Style</string>
-    <string name="style_underline"><![CDATA[<u style=\" border-bottom: 1px dashed #bcbcbc;   text-decoration: none;\">Style</u>]]></string>
+    <string name="style_underline">
+        <![CDATA[<u style=\" border-bottom: 1px dashed #bcbcbc;   text-decoration: none;\">Style</u>]]></string>
     <string name="full_path">full-path</string>
     <string name="error_goToPage">goToPage error:</string>
     <string name="zip">.zip</string>
@@ -65,7 +66,8 @@
     <string name="please_wait">please wait...</string>
     <string name="one_and_half_speed"><![CDATA[1<sup>1</sup>/<sub>2</sub>x]]></string>
     <string name="half_speed_text"><![CDATA[<sup>1</sup>/<sub>2</sub>x]]></string>
-    <string name="please_wait_till_audio_is_parsed">please wait till audio is been parsed, Retry after some time</string>
+    <string name="please_wait_till_audio_is_parsed">please wait till audio is been parsed, Retry after some time
+    </string>
     <string name="audio_mark_id">javascript:alert(audioMarkID(\'epub-media-overlay-playing\',\'%s\'))</string>
     <string name="setmediaoverlaystyle">javascript:setMediaOverlayStyle(\'%s\')</string>
     <string name="go_to_anchor" translatable="false">javascript:goToAnchor(\'%s\')</string>
