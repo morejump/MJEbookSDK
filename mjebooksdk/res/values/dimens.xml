@@ -5,4 +5,6 @@
     <dimen name="normal_padding">16dp</dimen>
     <dimen name="small_padding">8dp</dimen>
     <dimen name="normal_margin">16dp</dimen>
+    <dimen name="item_favorite_height">72dp</dimen>
+    <dimen name="line_item">5dp</dimen>
 </resources>

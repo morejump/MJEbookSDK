@@ -1,10 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <TextView
-            android:text="this is item on recyclerview"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_favorite_height"
+                android:layout_marginBottom="@dimen/normal_margin"
+                android:background="@color/item_bg">
 
-</LinearLayout>
+    <View
+            android:layout_width="@dimen/line_item"
+            android:layout_height="@dimen/item_favorite_height"
+            android:background="@color/blue_color"/>
+
+    <ImageView
+            android:id="@+id/imgFavorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginLeft="@dimen/normal_margin"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:background="@drawable/favorite_circle_bg"
+            android:padding="@dimen/small_padding"
+            android:src="@drawable/ic_favorite"/>
+
+    <TextView
+            android:id="@+id/txtLocationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_toRightOf="@id/imgFavorite"
+            android:text="ABC Station"
+            android:textColor="@color/blue_color"
+            android:textStyle="bold"/>
+
+
+    <ImageView
+            android:id="@+id/imgDelete"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/orange_color"
+            android:padding="@dimen/normal_padding"
+            android:src="@drawable/ic_delete"/>
+
+    <ImageView
+            android:id="@+id/imgEdit"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/imgDelete"
+            android:background="@color/blue_color"
+            android:padding="@dimen/normal_padding"
+            android:src="@drawable/ic_edit"/>
+
+</RelativeLayout>
