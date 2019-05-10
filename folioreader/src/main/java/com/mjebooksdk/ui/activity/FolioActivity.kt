@@ -48,21 +48,19 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
-import com.mcxiaoke.koi.log.logd
 import com.mjebooksdk.Config
 import com.mjebooksdk.Constants
 import com.mjebooksdk.Constants.*
 import com.mjebooksdk.FolioReader
 import com.mjebooksdk.R
-import com.mjebooksdk.model.DisplayUnit
-import com.mjebooksdk.model.HighlightImpl
-import com.mjebooksdk.model.ReadLocation
+import com.mjebooksdk.database.DisplayUnit
+import com.mjebooksdk.database.HighlightImpl
+import com.mjebooksdk.database.ReadLocation
 
-import com.mjebooksdk.model.dao.IReadLocationDao
-import com.mjebooksdk.model.dao.ReadLocationImpl
-import com.mjebooksdk.model.event.MediaOverlayPlayPauseEvent
-import com.mjebooksdk.model.locators.ReadLocator
-import com.mjebooksdk.model.locators.SearchLocator
+import com.mjebooksdk.database.dao.IReadLocationDao
+import com.mjebooksdk.database.event.MediaOverlayPlayPauseEvent
+import com.mjebooksdk.database.locators.ReadLocator
+import com.mjebooksdk.database.locators.SearchLocator
 import com.mjebooksdk.ui.adapter.FolioPageFragmentAdapter
 import com.mjebooksdk.ui.adapter.SearchAdapter
 import com.mjebooksdk.ui.fragment.FolioPageFragment
@@ -72,6 +70,7 @@ import com.mjebooksdk.ui.view.DirectionalViewpager
 import com.mjebooksdk.ui.view.FolioAppBarLayout
 import com.mjebooksdk.ui.view.MediaControllerCallback
 import com.mjebooksdk.util.AppUtil
+import com.mjebooksdk.util.DatabaseManager
 import com.mjebooksdk.util.FileUtil
 import com.mjebooksdk.util.UiUtil
 import io.realm.Realm
@@ -133,7 +132,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         @JvmField
         val LOG_TAG: String = FolioActivity::class.java.simpleName
-
+        const val BOOK_MARK_REQUEST_CODE = 1
         const val INTENT_EPUB_SOURCE_PATH = "com.folioreader.epub_asset_path"
         const val INTENT_EPUB_SOURCE_TYPE = "epub_source_type"
         const val EXTRA_READ_LOCATOR = "com.folioreader.extra.READ_LOCATOR"
@@ -203,7 +202,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     private enum class RequestCode private constructor(internal val value: Int) {
         CONTENT_HIGHLIGHT(77),
-        SEARCH(101)
+        SEARCH(101),
+        BOOK_MARK(123)
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -254,7 +254,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        readLocationDatabase = ReadLocationImpl();
+        readLocationDatabase = DatabaseManager.getInstance();
+        var list = readLocationDatabase.all
         realm = Realm.getDefaultInstance()
         // Need to add when vector drawables support library is used.
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
@@ -435,6 +436,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 readLocation.location = entryReadLocator?.toJson()
                 readLocationDatabase.add(readLocation)
                 return true
+            }
+            R.id.itemBookmarkList -> {
+                var intent = Intent(this, SettingsActivity::class.java);
+                startActivityForResult(intent, RequestCode.BOOK_MARK.value);
             }
         }
         return super.onOptionsItemSelected(item)
@@ -867,6 +872,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 folioPageFragment.scrollToHighlightId(highlightImpl.rangy)
             }
         }
+
+        if (requestCode  == RequestCode.BOOK_MARK.value && resultCode == Activity.RESULT_OK){
+            // TODO move to bookmard location here
+        }
     }
 
     override fun onDestroy() {
@@ -1109,6 +1118,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         }
     }
+
+
 
     override fun onBackPressed() {
         //super.onBackPressed()

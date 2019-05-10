@@ -2,7 +2,7 @@ package com.mjebooksdk.ui.base;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import com.mjebooksdk.model.dictionary.Wikipedia;
+import com.mjebooksdk.database.dictionary.Wikipedia;
 import com.mjebooksdk.util.AppUtil;
 import org.json.JSONArray;
 import org.json.JSONException;

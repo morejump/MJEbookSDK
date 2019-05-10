@@ -1,8 +1,8 @@
 package com.mjebooksdk.ui.base;
 
 import android.os.AsyncTask;
-import com.mjebooksdk.model.HighLight;
-import com.mjebooksdk.model.sqlite.HighLightTable;
+import com.mjebooksdk.database.HighLight;
+import com.mjebooksdk.database.sqlite.HighLightTable;
 
 import java.util.List;
 

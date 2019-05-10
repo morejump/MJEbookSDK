@@ -1,7 +1,7 @@
 package com.mjebooksdk.util;
 
 import androidx.recyclerview.widget.RecyclerView;
-import com.mjebooksdk.model.TOCLinkWrapper;
+import com.mjebooksdk.database.TOCLinkWrapper;
 
 import java.util.ArrayList;
 import java.util.Collection;

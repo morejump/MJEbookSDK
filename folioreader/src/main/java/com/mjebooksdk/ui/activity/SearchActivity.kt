@@ -12,7 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -24,7 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mjebooksdk.Config
 import com.mjebooksdk.R
-import com.mjebooksdk.model.locators.SearchLocator
+import com.mjebooksdk.database.locators.SearchLocator
 import com.mjebooksdk.ui.adapter.ListViewType
 import com.mjebooksdk.ui.adapter.OnItemClickListener
 import com.mjebooksdk.ui.adapter.SearchAdapter

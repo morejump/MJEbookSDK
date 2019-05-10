@@ -1,6 +1,6 @@
 package com.mjebooksdk.android.sample;
 
-import com.mjebooksdk.model.HighLight;
+import com.mjebooksdk.database.HighLight;
 
 import java.util.Date;
 

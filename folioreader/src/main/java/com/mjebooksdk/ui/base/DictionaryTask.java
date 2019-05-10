@@ -5,7 +5,7 @@ import android.os.Build;
 import android.util.Log;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mjebooksdk.model.dictionary.Dictionary;
+import com.mjebooksdk.database.dictionary.Dictionary;
 import com.mjebooksdk.network.TLSSocketFactory;
 import com.mjebooksdk.util.AppUtil;
 

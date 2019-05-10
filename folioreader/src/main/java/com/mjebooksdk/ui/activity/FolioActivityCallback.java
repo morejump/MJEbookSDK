@@ -2,8 +2,8 @@ package com.mjebooksdk.ui.activity;
 
 import android.graphics.Rect;
 import com.mjebooksdk.Config;
-import com.mjebooksdk.model.DisplayUnit;
-import com.mjebooksdk.model.locators.ReadLocator;
+import com.mjebooksdk.database.DisplayUnit;
+import com.mjebooksdk.database.locators.ReadLocator;
 
 import java.lang.ref.WeakReference;
 

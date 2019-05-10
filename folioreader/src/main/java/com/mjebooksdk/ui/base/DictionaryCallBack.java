@@ -1,6 +1,6 @@
 package com.mjebooksdk.ui.base;
 
-import com.mjebooksdk.model.dictionary.Dictionary;
+import com.mjebooksdk.database.dictionary.Dictionary;
 
 /**
  * @author gautam chibde on 4/7/17.

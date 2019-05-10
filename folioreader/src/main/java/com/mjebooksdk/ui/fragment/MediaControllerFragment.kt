@@ -15,8 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import com.mjebooksdk.Config
 import com.mjebooksdk.R
-import com.mjebooksdk.model.event.MediaOverlayHighlightStyleEvent
-import com.mjebooksdk.model.event.MediaOverlaySpeedEvent
+import com.mjebooksdk.database.event.MediaOverlayHighlightStyleEvent
+import com.mjebooksdk.database.event.MediaOverlaySpeedEvent
 import com.mjebooksdk.ui.view.MediaControllerCallback
 import com.mjebooksdk.ui.view.StyleableTextView
 import com.mjebooksdk.util.AppUtil

@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mjebooksdk.Config;
 import com.mjebooksdk.R;
-import com.mjebooksdk.model.HighlightImpl;
+import com.mjebooksdk.database.HighlightImpl;
 import com.mjebooksdk.ui.view.UnderlinedTextView;
 import com.mjebooksdk.util.AppUtil;
 import com.mjebooksdk.util.UiUtil;

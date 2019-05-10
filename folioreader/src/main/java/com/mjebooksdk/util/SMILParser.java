@@ -1,6 +1,6 @@
 package com.mjebooksdk.util;
 
-import com.mjebooksdk.model.media_overlay.OverlayItems;
+import com.mjebooksdk.database.media_overlay.OverlayItems;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 

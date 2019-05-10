@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import com.mjebooksdk.model.HighLight;
-import com.mjebooksdk.model.HighlightImpl;
-import com.mjebooksdk.model.sqlite.HighLightTable;
+import com.mjebooksdk.database.HighLight;
+import com.mjebooksdk.database.HighlightImpl;
+import com.mjebooksdk.database.sqlite.HighLightTable;
 import org.json.JSONException;
 import org.json.JSONObject;
 

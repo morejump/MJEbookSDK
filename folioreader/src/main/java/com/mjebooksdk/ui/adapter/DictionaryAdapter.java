@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mjebooksdk.Config;
 import com.mjebooksdk.R;
-import com.mjebooksdk.model.dictionary.*;
+import com.mjebooksdk.database.dictionary.*;
 import com.mjebooksdk.ui.base.DictionaryCallBack;
 import com.mjebooksdk.util.AppUtil;
 

@@ -5,8 +5,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mjebooksdk.FolioReader
-import com.mjebooksdk.model.locators.SearchItemType
-import com.mjebooksdk.model.locators.SearchLocator
+import com.mjebooksdk.database.locators.SearchItemType
+import com.mjebooksdk.database.locators.SearchLocator
 import com.mjebooksdk.network.R2StreamerApi
 import com.mjebooksdk.ui.adapter.ListViewType
 import org.readium.r2.shared.Locator

@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import com.mjebooksdk.Config
 import com.mjebooksdk.Constants
 import com.mjebooksdk.R
-import com.mjebooksdk.model.event.ReloadDataEvent
+import com.mjebooksdk.database.event.ReloadDataEvent
 import com.mjebooksdk.ui.activity.FolioActivity
 import com.mjebooksdk.ui.activity.FolioActivityCallback
 import com.mjebooksdk.ui.fragment.MediaControllerFragment

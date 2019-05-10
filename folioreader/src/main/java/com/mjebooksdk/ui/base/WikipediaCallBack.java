@@ -1,6 +1,6 @@
 package com.mjebooksdk.ui.base;
 
-import com.mjebooksdk.model.dictionary.Wikipedia;
+import com.mjebooksdk.database.dictionary.Wikipedia;
 
 /**
  * @author gautam chibde on 4/7/17.

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mjebooksdk.Config;
 import com.mjebooksdk.R;
-import com.mjebooksdk.model.TOCLinkWrapper;
+import com.mjebooksdk.database.TOCLinkWrapper;
 import com.mjebooksdk.ui.adapter.TOCAdapter;
 import com.mjebooksdk.util.AppUtil;
 import org.readium.r2.shared.Link;

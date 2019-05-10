@@ -25,10 +25,10 @@ import androidx.core.view.GestureDetectorCompat
 import com.mjebooksdk.Config
 import com.mjebooksdk.Constants
 import com.mjebooksdk.R
-import com.mjebooksdk.model.DisplayUnit
-import com.mjebooksdk.model.HighLight
-import com.mjebooksdk.model.HighlightImpl.HighlightStyle
-import com.mjebooksdk.model.sqlite.HighLightTable
+import com.mjebooksdk.database.DisplayUnit
+import com.mjebooksdk.database.HighLight
+import com.mjebooksdk.database.HighlightImpl.HighlightStyle
+import com.mjebooksdk.database.sqlite.HighLightTable
 import com.mjebooksdk.ui.activity.FolioActivity
 import com.mjebooksdk.ui.activity.FolioActivityCallback
 import com.mjebooksdk.ui.fragment.DictionaryFragment

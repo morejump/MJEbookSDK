@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mjebooksdk.Config;
 import com.mjebooksdk.R;
-import com.mjebooksdk.model.TOCLinkWrapper;
+import com.mjebooksdk.database.TOCLinkWrapper;
 import com.mjebooksdk.util.MultiLevelExpIndListAdapter;
 
 import java.util.ArrayList;

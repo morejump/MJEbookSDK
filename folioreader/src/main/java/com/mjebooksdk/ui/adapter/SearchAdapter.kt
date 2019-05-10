@@ -13,8 +13,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mjebooksdk.R
-import com.mjebooksdk.model.locators.SearchItemType
-import com.mjebooksdk.model.locators.SearchLocator
+import com.mjebooksdk.database.locators.SearchItemType
+import com.mjebooksdk.database.locators.SearchLocator
 
 class SearchAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

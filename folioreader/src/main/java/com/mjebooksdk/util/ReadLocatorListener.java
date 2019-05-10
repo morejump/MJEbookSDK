@@ -1,6 +1,6 @@
 package com.mjebooksdk.util;
 
-import com.mjebooksdk.model.locators.ReadLocator;
+import com.mjebooksdk.database.locators.ReadLocator;
 
 /**
  * Created by Hrishikesh Kadam on 17/04/2018.

@@ -17,7 +17,6 @@ package com.mjebooksdk.android.sample;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,8 +25,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mjebooksdk.Config;
 import com.mjebooksdk.FolioReader;
 import com.mjebooksdk.android.sample.Utils.SharePreferenceManager;
-import com.mjebooksdk.model.HighLight;
-import com.mjebooksdk.model.locators.ReadLocator;
+import com.mjebooksdk.database.HighLight;
+import com.mjebooksdk.database.locators.ReadLocator;
 import com.mjebooksdk.ui.base.OnSaveHighlight;
 import com.mjebooksdk.util.AppUtil;
 import com.mjebooksdk.util.OnHighlightListener;
