@@ -44,6 +44,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.codemybrainsout.ratingdialog.RatingDialog
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -258,6 +259,16 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val ratingDialog = RatingDialog.Builder(this)
+            .threshold(4f)
+            .session(7)
+            .onRatingBarFormSumbit(object : RatingDialog.Builder.RatingDialogFormListener {
+                override fun onFormSubmitted(feedback: String) {
+
+                }
+            }).build()
+
+        ratingDialog.show()
         addBookmarkDialog = AddBookmarkDialog(this)
         addBookmarkDialog.setAddBookmarkListener(this)
         readLocationDatabase = DatabaseManager.getInstance();
