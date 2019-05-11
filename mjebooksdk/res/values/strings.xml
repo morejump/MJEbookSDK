@@ -127,5 +127,6 @@
     <string name="ok">ok</string>
     <string name="add_to_bookmark">Thêm vào Bookmark</string>
     <string name="add_title">Nhập tiêu đề</string>
+    <string name="title_toolbar_bookmark">Danh sách Bookmark</string>
 
 </resources>

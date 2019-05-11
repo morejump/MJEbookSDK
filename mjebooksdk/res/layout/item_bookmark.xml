@@ -38,7 +38,7 @@
             android:layout_width="48dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:background="@color/orange_color"
+            android:background="@color/green_color"
             android:padding="@dimen/normal_padding"
             android:src="@drawable/ic_delete"/>
 

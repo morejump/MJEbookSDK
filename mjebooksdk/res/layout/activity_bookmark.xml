@@ -7,13 +7,26 @@
         android:layout_height="match_parent"
         tools:context=".ui.activity.BookmarkActivity">
 
+    <androidx.appcompat.widget.Toolbar
+            android:theme="@style/ToolbarTheme"
+            android:id="@+id/toolbar"
+            android:background="#5aaf49"
+            app:titleTextColor="@color/white"
+            app:title="@string/title_toolbar_bookmark"
+            android:foregroundTint="@color/green_color"
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
+            android:layout_margin="@dimen/normal_margin"
             android:id="@+id/rvBookmark"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="76dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
