@@ -57,10 +57,7 @@ import com.mjebooksdk.ui.view.ConfigBottomSheetDialogFragment
 import com.mjebooksdk.ui.view.DirectionalViewpager
 import com.mjebooksdk.ui.view.FolioAppBarLayout
 import com.mjebooksdk.ui.view.MediaControllerCallback
-import com.mjebooksdk.util.AppUtil
-import com.mjebooksdk.util.DatabaseManager
-import com.mjebooksdk.util.FileUtil
-import com.mjebooksdk.util.UiUtil
+import com.mjebooksdk.util.*
 import io.realm.Realm
 import org.greenrobot.eventbus.EventBus
 import org.readium.r2.shared.Link
@@ -425,7 +422,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 return true
             }
             R.id.itemReadOtherStory -> {
-                return false
+                Utils.readOtherStory(this)
+                return true
             }
             R.id.itemAddBookmark -> {
                 addBookmarkDialog.show();
