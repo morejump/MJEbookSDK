@@ -55,6 +55,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
         public BookmarkViewHolder(@NonNull View itemView, IBookmarkListener bookmarkListener) {
             super(itemView);
             this.bookmarkListener = bookmarkListener;
+            itemView.setOnClickListener(this);
             imgDelete = itemView.findViewById(R.id.imgDelete);
             imgEdit = itemView.findViewById(R.id.imgEdit);
             txtTitle = itemView.findViewById(R.id.txtTitle);
@@ -72,9 +73,12 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.Bookma
             int id = view.getId();
             if (id == R.id.imgDelete) {
                 bookmarkListener.deleteBookmark(readLocation);
+                return;
             } else if (id == R.id.imgEdit) {
                 bookmarkListener.updateBookmark(readLocation);
+                return;
             }
+            bookmarkListener.selectedItem(readLocation);
         }
     }
 }

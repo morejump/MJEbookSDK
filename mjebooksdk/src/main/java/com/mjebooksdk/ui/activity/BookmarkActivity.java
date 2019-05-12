@@ -1,5 +1,7 @@
 package com.mjebooksdk.ui.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
@@ -24,6 +26,7 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
     private IReadLocationDao readLocationDao;
     private DeleteBookmarkDialog deleteBookmarkDialog;
     private UpdateBookmarkDialog updateBookmarkDialog;
+    public  static String BOOKMARK_RESULT_KEY = "BOOKMARK_RESULT_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,5 +73,13 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
                 readLocationDao.update(readLocation);
             }
         });
+    }
+
+    @Override
+    public void selectedItem(ReadLocation readLocation) {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra(BOOKMARK_RESULT_KEY, readLocation.getId());
+        setResult(Activity.RESULT_OK, returnIntent);
+        finish();
     }
 }

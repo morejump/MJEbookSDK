@@ -70,7 +70,7 @@ import java.lang.ref.WeakReference
 import java.util.*
 
 class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControllerCallback,
-    View.OnSystemUiVisibilityChangeListener, View.OnClickListener{
+    View.OnSystemUiVisibilityChangeListener, View.OnClickListener {
 
     private lateinit var realm: Realm
     private lateinit var mInterstitialAd: InterstitialAd
@@ -112,7 +112,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private var density: Float = 0.toFloat()
     private var topActivity: Boolean? = null
     private var taskImportance: Int = 0
-    private  lateinit var readLocationDatabase : IReadLocationDao
+    private lateinit var readLocationDatabase: IReadLocationDao
     private lateinit var addBookmarkDialog: AddBookmarkDialog
 
     companion object {
@@ -873,10 +873,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 val folioPageFragment = currentFragment ?: return
                 folioPageFragment.scrollToHighlightId(highlightImpl.rangy)
             }
-        }
-
-        if (requestCode  == RequestCode.BOOK_MARK.value && resultCode == Activity.RESULT_OK){
+        } else if (requestCode == RequestCode.BOOK_MARK.value && resultCode == Activity.RESULT_OK) {
             // TODO move to bookmard location here
+            var idReadLocation: String? = data?.getStringExtra(BookmarkActivity.BOOKMARK_RESULT_KEY)
         }
     }
 
@@ -1120,9 +1119,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         }
     }
-
-
-
 
 
     override fun onBackPressed() {
