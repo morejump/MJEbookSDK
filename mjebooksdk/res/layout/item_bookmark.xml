@@ -23,7 +23,7 @@
             android:src="@drawable/ic_favorite"/>
 
     <TextView
-            android:id="@+id/txtLocationName"
+            android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/normal_margin"

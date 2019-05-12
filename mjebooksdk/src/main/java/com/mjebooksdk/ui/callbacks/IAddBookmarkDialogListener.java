@@ -1,5 +1,5 @@
 package com.mjebooksdk.ui.callbacks;
 
-public interface IAddBookmarkListener {
+public interface IAddBookmarkDialogListener {
     void addBookmark();
 }

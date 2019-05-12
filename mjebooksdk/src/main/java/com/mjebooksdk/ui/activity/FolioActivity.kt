@@ -64,7 +64,7 @@ import com.mjebooksdk.database.locators.ReadLocator
 import com.mjebooksdk.database.locators.SearchLocator
 import com.mjebooksdk.ui.adapter.FolioPageFragmentAdapter
 import com.mjebooksdk.ui.adapter.SearchAdapter
-import com.mjebooksdk.ui.callbacks.IAddBookmarkListener
+import com.mjebooksdk.ui.callbacks.IAddBookmarkDialogListener
 import com.mjebooksdk.ui.dialogs.AddBookmarkDialog
 import com.mjebooksdk.ui.fragment.FolioPageFragment
 import com.mjebooksdk.ui.fragment.MediaControllerFragment
@@ -88,7 +88,8 @@ import java.lang.ref.WeakReference
 import java.util.*
 
 class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControllerCallback,
-    View.OnSystemUiVisibilityChangeListener, View.OnClickListener, IAddBookmarkListener {
+    View.OnSystemUiVisibilityChangeListener, View.OnClickListener,
+    IAddBookmarkDialogListener {
 
     private lateinit var realm: Realm
     private lateinit var mInterstitialAd: InterstitialAd

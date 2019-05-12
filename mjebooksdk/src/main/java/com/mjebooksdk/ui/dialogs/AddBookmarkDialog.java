@@ -6,11 +6,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import androidx.annotation.NonNull;
 import com.mjebooksdk.R;
-import com.mjebooksdk.ui.callbacks.IAddBookmarkListener;
+import com.mjebooksdk.ui.callbacks.IAddBookmarkDialogListener;
 
 public class AddBookmarkDialog extends NoTitleDialog implements View.OnClickListener {
 
-    private IAddBookmarkListener addBookmarkListener;
+    private IAddBookmarkDialogListener addBookmarkListener;
     private Button btnOK, btnCancel;
     private EditText edtAddFavorite;
 
@@ -47,7 +47,7 @@ public class AddBookmarkDialog extends NoTitleDialog implements View.OnClickList
         }
     }
 
-    public void setAddBookmarkListener(IAddBookmarkListener addBookmarkListener) {
+    public void setAddBookmarkListener(IAddBookmarkDialogListener addBookmarkListener) {
         this.addBookmarkListener = addBookmarkListener;
     }
 

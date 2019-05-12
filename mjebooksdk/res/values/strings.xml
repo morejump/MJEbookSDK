@@ -128,5 +128,9 @@
     <string name="add_to_bookmark">Thêm vào Bookmark</string>
     <string name="add_title">Nhập tiêu đề</string>
     <string name="title_toolbar_bookmark">Danh sách Bookmark</string>
+    <string name="delete_book_mark">Xóa bookmark này</string>
+    <string name="this_action_cannot_be_undo">Sau khi xóa bạn không thể khôi phục</string>
+    <string name="delete">xóa</string>
+    <string name="update_bookmark">Thay đổi bookmark</string>
 
 </resources>

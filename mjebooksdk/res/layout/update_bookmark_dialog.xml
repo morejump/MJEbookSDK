@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/view_corner"
+                android:paddingLeft="@dimen/normal_padding"
+                android:paddingTop="@dimen/normal_padding"
+                android:paddingBottom="@dimen/small_padding">
+
+    <TextView
+            android:id="@+id/txtAddFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/update_bookmark"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+    <EditText
+            android:id="@+id/edtAddFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtAddFavorite"
+            android:layout_marginRight="@dimen/normal_margin"
+            android:hint="@string/add_title"
+            android:textColor="@color/edit_text_hint_color" />
+
+    <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtAddFavorite"
+            android:layout_toLeftOf="@id/btnOK"
+            android:background="@color/white"
+            android:text="@string/cancel"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+    <Button
+            android:id="@+id/btnOK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edtAddFavorite"
+            android:layout_alignParentRight="true"
+            android:background="@color/white"
+            android:text="@string/ok"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+
+</RelativeLayout>

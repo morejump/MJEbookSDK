@@ -7,4 +7,5 @@
     <dimen name="normal_margin">16dp</dimen>
     <dimen name="item_favorite_height">72dp</dimen>
     <dimen name="line_item">5dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
 </resources>

@@ -32,5 +32,6 @@
     <color name="item_bg">#f2f1f2</color>
     <color name="blue_color">#175681</color>
     <color name="orange_color">#f15a25</color>
+    <color name="colorGray">#757779</color>
 
 </resources>
