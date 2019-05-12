@@ -6,22 +6,27 @@ import java.util.List;
 
 public class ReadLocationImpl implements IReadLocationDao {
     @Override
-    public void add(ReadLocation readLocation) {
+    public void addReadLocation(ReadLocation readLocation) {
 
     }
 
     @Override
-    public void update(ReadLocation readLocation) {
+    public void updateReadLocation(ReadLocation readLocation) {
 
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteReadLoctionById(String id) {
 
     }
 
     @Override
-    public List<ReadLocation> getAll() {
+    public ReadLocation getReadLocationById(String id) {
+        return null;
+    }
+
+    @Override
+    public List<ReadLocation> getAllReadLocation() {
         return null;
     }
 

@@ -14,7 +14,6 @@ import com.mjebooksdk.ui.adapter.BookmarkAdapter;
 import com.mjebooksdk.ui.callbacks.IBookmarkListener;
 import com.mjebooksdk.ui.callbacks.IDeleteBookmarkDialogListener;
 import com.mjebooksdk.ui.callbacks.IUpdateBookmarkDialogListner;
-import com.mjebooksdk.ui.dialogs.AddBookmarkDialog;
 import com.mjebooksdk.ui.dialogs.DeleteBookmarkDialog;
 import com.mjebooksdk.ui.dialogs.UpdateBookmarkDialog;
 import com.mjebooksdk.util.DatabaseManager;
@@ -39,7 +38,7 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         readLocationDao = DatabaseManager.getInstance();
-        bookmarkAdapter = new BookmarkAdapter(readLocationDao.getAll(), this);
+        bookmarkAdapter = new BookmarkAdapter(readLocationDao.getAllReadLocation(), this);
         rvBookmark = findViewById(R.id.rvBookmark);
         rvBookmark.setLayoutManager(new LinearLayoutManager(this));
         rvBookmark.setAdapter(bookmarkAdapter);
@@ -58,7 +57,7 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
         deleteBookmarkDialog.setDeleteListener(new IDeleteBookmarkDialogListener() {
             @Override
             public void deleteBookmark() {
-                readLocationDao.delete(readLocation.getId());
+                readLocationDao.deleteReadLoctionById(readLocation.getId());
 
             }
         });
@@ -70,7 +69,7 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
         updateBookmarkDialog.setUpdateListner(new IUpdateBookmarkDialogListner() {
             @Override
             public void updateBookmark() {
-                readLocationDao.update(readLocation);
+                readLocationDao.updateReadLocation(readLocation);
             }
         });
     }

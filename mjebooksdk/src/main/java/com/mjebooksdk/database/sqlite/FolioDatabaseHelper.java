@@ -62,7 +62,7 @@ public class FolioDatabaseHelper extends SQLiteOpenHelper {
                                 final int newVersion) {
         /* PROTECTED REGION ID(DatabaseUpdate) ENABLED START */
 
-        // TODO Implement your database update functionality here and remove the
+        // TODO Implement your database updateReadLocation functionality here and remove the
         // following method call!
         //onUpgradeDropTables(db);
         //onCreate(db);

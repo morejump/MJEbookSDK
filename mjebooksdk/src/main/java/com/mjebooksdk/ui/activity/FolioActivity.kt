@@ -114,6 +114,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private var taskImportance: Int = 0
     private lateinit var readLocationDatabase: IReadLocationDao
     private lateinit var addBookmarkDialog: AddBookmarkDialog
+    private lateinit var folioReader: FolioReader;
 
     companion object {
 
@@ -241,6 +242,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        folioReader =  FolioReader.get()
         val ratingDialog = RatingDialog.Builder(this)
             .threshold(4f)
             .session(7)
@@ -253,9 +255,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         ratingDialog.show()
         addBookmarkDialog = AddBookmarkDialog(this)
         readLocationDatabase = DatabaseManager.getInstance();
-        var list = readLocationDatabase.all
+        var list = readLocationDatabase.allReadLocation
         realm = Realm.getDefaultInstance()
-        // Need to add when vector drawables support library is used.
+        // Need to addReadLocation when vector drawables support library is used.
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
 
         handler = Handler()
@@ -363,7 +365,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             ColorDrawable(ContextCompat.getColor(this, R.color.white))
         )
         toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.black))
-        // TODO  add inter ads here
+        // TODO  addReadLocation inter ads here
     }
 
     override fun setNightMode() {
@@ -373,7 +375,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             ColorDrawable(ContextCompat.getColor(this, R.color.black))
         )
         toolbar!!.setTitleTextColor(ContextCompat.getColor(this, R.color.night_title_text_color))
-        // TODO  add inter ads here
+        // TODO  addReadLocation inter ads here
     }
 
     private fun initMediaController() {
@@ -435,7 +437,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 readLocation.id = UUID.randomUUID().toString()
                 readLocation.location = entryReadLocator?.toJson()
                 addBookmarkDialog.setAddBookmarkListener(IAddBookmarkDialogListener {
-                    readLocationDatabase.add(readLocation)
+                    readLocationDatabase.addReadLocation(readLocation)
                 })
                 return true
             }
@@ -583,7 +585,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     }
 
     override fun onDirectionChange(newDirection: Config.Direction) {
-        // TODO  add inter ads here
+        // TODO  addReadLocation inter ads here
         Toast.makeText(this, "on direction changed", Toast.LENGTH_LONG).show()
         Log.v(LOG_TAG, "-> onDirectionChange")
 
@@ -813,7 +815,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
      * @return true if href is of EPUB or false if other link
      */
     override fun goToChapter(href: String): Boolean {
-        // TODO add inter ads here
+        // TODO addReadLocation inter ads here
         mInterstitialAd.show();
         mInterstitialAd.adListener = object : AdListener() {
             override fun onAdClosed() {
@@ -874,8 +876,14 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 folioPageFragment.scrollToHighlightId(highlightImpl.rangy)
             }
         } else if (requestCode == RequestCode.BOOK_MARK.value && resultCode == Activity.RESULT_OK) {
-            // TODO move to bookmard location here
             var idReadLocation: String? = data?.getStringExtra(BookmarkActivity.BOOKMARK_RESULT_KEY)
+            var readLocation: ReadLocation = readLocationDatabase.getReadLocationById(idReadLocation)
+            var config = AppUtil.getSavedConfig(applicationContext)
+            if (config == null) config = Config()
+            config.allowedDirection = Config.AllowedDirection.ONLY_VERTICAL
+            folioReader.setReadLocator(ReadLocator.fromJson(readLocation.location))
+            folioReader.setConfig(config, true)
+                .openBook("file:///android_asset/daichuate.epub")
         }
     }
 

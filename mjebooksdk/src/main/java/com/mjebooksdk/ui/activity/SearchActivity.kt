@@ -319,7 +319,7 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
                 intent.putExtra(FolioActivity.EXTRA_SEARCH_ITEM, viewHolder.searchLocator as Parcelable)
                 intent.putExtra(BUNDLE_SAVE_SEARCH_QUERY, searchView.query)
                 setResult(ResultCode.ITEM_SELECTED.value, intent)
-                // TODO add inter ads here
+                // TODO addReadLocation inter ads here
                 finish()
             }
         }

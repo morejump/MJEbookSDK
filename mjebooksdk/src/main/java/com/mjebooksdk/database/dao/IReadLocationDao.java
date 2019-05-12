@@ -5,8 +5,15 @@ import com.mjebooksdk.database.ReadLocation;
 import java.util.List;
 
 public interface IReadLocationDao {
-    void add(ReadLocation readLocation);
-    void update(ReadLocation readLocation);
-    void delete(String id);
-    List<ReadLocation> getAll();
+    void addReadLocation(ReadLocation readLocation);
+
+    void updateReadLocation(ReadLocation readLocation);
+
+    void deleteReadLoctionById(String id);
+
+    ReadLocation getReadLocationById(String id);
+
+    List<ReadLocation> getAllReadLocation();
+
+
 }

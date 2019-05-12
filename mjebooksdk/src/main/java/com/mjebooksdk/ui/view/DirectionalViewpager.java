@@ -661,11 +661,11 @@ public class DirectionalViewpager extends ViewGroup {
      * Add a listener that will be invoked whenever the page changes or is incrementally
      * scrolled. See {@link OnPageChangeListener}.
      * <p>
-     * <p>Components that add a listener should take care to remove it when finished.
+     * <p>Components that addReadLocation a listener should take care to remove it when finished.
      * Other components that take ownership of a view may call {@link #clearOnPageChangeListeners()}
      * to remove all attached listeners.</p>
      *
-     * @param listener listener to add
+     * @param listener listener to addReadLocation
      */
     public void addOnPageChangeListener(OnPageChangeListener listener) {
         if (mOnPageChangeListeners == null) {
@@ -1138,7 +1138,7 @@ public class DirectionalViewpager extends ViewGroup {
                     " Problematic adapter: " + mAdapter.getClass());
         }
 
-        // Locate the currently focused item or add it if needed.
+        // Locate the currently focused item or addReadLocation it if needed.
         int curIndex = -1;
         ItemInfo curItem = null;
         for (curIndex = 0; curIndex < mItems.size(); curIndex++) {
@@ -1656,7 +1656,7 @@ public class DirectionalViewpager extends ViewGroup {
         lp.isDecor |= child instanceof Decor;
         if (mInLayout) {
             if (lp != null && lp.isDecor) {
-                throw new IllegalStateException("Cannot add pager decor view during layout");
+                throw new IllegalStateException("Cannot addReadLocation pager decor view during layout");
             }
             lp.needsMeasure = true;
             addViewInLayout(child, index, params);
@@ -3797,7 +3797,7 @@ public class DirectionalViewpager extends ViewGroup {
             }
         }
 
-        // we add ourselves (if focusable) in all cases except for when we are
+        // we addReadLocation ourselves (if focusable) in all cases except for when we are
         // FOCUS_AFTER_DESCENDANTS and there are some descendants focusable.  this is
         // to avoid the focus search finding layouts when a more precise search
         // among the focusable children would be more interesting.
@@ -3806,7 +3806,7 @@ public class DirectionalViewpager extends ViewGroup {
                         // No focusable descendants
                         (focusableCount == views.size())) {
             // Note that we can't call the superclass here, because it will
-            // add all views in.  So we need to do the same thing View does.
+            // addReadLocation all views in.  So we need to do the same thing View does.
             if (!isFocusable()) {
                 return;
             }

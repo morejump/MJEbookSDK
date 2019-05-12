@@ -284,16 +284,16 @@ public abstract class MultiLevelExpIndListAdapter extends RecyclerView.Adapter {
         //int groupSize = 0;
 
         /*for (int i = tocLinkWrapper.getChildren().size() - 1; i >= 0; i--)
-            stack.add(tocLinkWrapper.getChildren().get(i));
+            stack.addReadLocation(tocLinkWrapper.getChildren().get(i));
 
         while (!stack.isEmpty()) {
             ExpIndData item = stack.remove(stack.size() - 1);
-            group.add(item);
+            group.addReadLocation(item);
             groupSize++;
             // stop when the item is a leaf or a group
             if (item.getChildren() != null && !item.getChildren().isEmpty() && !item.isGroup()) {
                 for (int i = item.getChildren().size() - 1; i >= 0; i--)
-                    stack.add(item.getChildren().get(i));
+                    stack.addReadLocation(item.getChildren().get(i));
             }
         }*/
 

@@ -15,7 +15,7 @@ public interface OnHighlightListener {
      * This method will be invoked when a highlight is created, deleted or modified.
      *
      * @param highlight meta-data for created highlight {@link HighlightImpl}.
-     * @param type      type of event e.g new,edit or delete {@link com.mjebooksdk.database.HighlightImpl.HighLightAction}.
+     * @param type      type of event e.g new,edit or deleteReadLoctionById {@link com.mjebooksdk.database.HighlightImpl.HighLightAction}.
      */
     void onHighlight(HighLight highlight, HighLight.HighLightAction type);
 }

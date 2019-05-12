@@ -76,11 +76,13 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public void saveReadLastLocator(ReadLocator readLocator) {
         SharePreferenceManager.setLastReadLocator(readLocator.toJson());
+        String str  = readLocator.toJson();
         Log.i(LOG_TAG, "-> saveReadLastLocator -> " + readLocator.toJson());
     }
 
     @Override
     public void saveReadCurrentLocator(ReadLocator readLocator) {
+        String str  = readLocator.toJson();
         Log.i(LOG_TAG, "-> saveReadLastLocator -> " + readLocator.toJson());
     }
 
