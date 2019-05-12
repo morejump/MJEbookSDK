@@ -132,5 +132,6 @@
     <string name="this_action_cannot_be_undo">Sau khi xóa bạn không thể khôi phục</string>
     <string name="delete">xóa</string>
     <string name="update_bookmark">Thay đổi bookmark</string>
+    <string name="add_new_title">Nhập tiêu đề mới</string>
 
 </resources>
