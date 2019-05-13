@@ -27,7 +27,6 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
     private UpdateBookmarkDialog updateBookmarkDialog;
     public static String BOOKMARK_RESULT_KEY = "BOOKMARK_RESULT_KEY";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +58,7 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
             @Override
             public void deleteBookmark() {
                 readLocationDao.deleteReadLoctionById(readLocation.getId());
-
+                bookmarkAdapter.setData(readLocationDao.getAllReadLocation());
             }
         });
     }
@@ -70,7 +69,9 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
         updateBookmarkDialog.setUpdateListner(new IUpdateBookmarkDialogListner() {
             @Override
             public void updateBookmark() {
+                readLocation.setTitle(updateBookmarkDialog.getBookmarkTitle());
                 readLocationDao.updateReadLocation(readLocation);
+                bookmarkAdapter.setData(readLocationDao.getAllReadLocation());
             }
         });
     }

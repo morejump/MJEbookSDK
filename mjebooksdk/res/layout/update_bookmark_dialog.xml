@@ -17,7 +17,7 @@
             android:textStyle="bold" />
 
     <EditText
-            android:id="@+id/edtAddFavorite"
+            android:id="@+id/edtAddTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtAddFavorite"
@@ -29,7 +29,7 @@
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/edtAddFavorite"
+            android:layout_below="@id/edtAddTitle"
             android:layout_toLeftOf="@id/btnOK"
             android:background="@color/white"
             android:text="@string/cancel"
@@ -41,7 +41,7 @@
             android:id="@+id/btnOK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/edtAddFavorite"
+            android:layout_below="@id/edtAddTitle"
             android:layout_alignParentRight="true"
             android:background="@color/white"
             android:text="@string/ok"
