@@ -29,6 +29,7 @@
 
     <Button
         android:id="@+id/btnCancel"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/normal_margin"
@@ -42,6 +43,7 @@
 
     <Button
         android:id="@+id/btnDelete"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
