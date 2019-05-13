@@ -25,7 +25,8 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
     private IReadLocationDao readLocationDao;
     private DeleteBookmarkDialog deleteBookmarkDialog;
     private UpdateBookmarkDialog updateBookmarkDialog;
-    public  static String BOOKMARK_RESULT_KEY = "BOOKMARK_RESULT_KEY";
+    public static String BOOKMARK_RESULT_KEY = "BOOKMARK_RESULT_KEY";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
         setContentView(R.layout.activity_bookmark);
         updateBookmarkDialog = new UpdateBookmarkDialog(this);
         deleteBookmarkDialog = new DeleteBookmarkDialog(this);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

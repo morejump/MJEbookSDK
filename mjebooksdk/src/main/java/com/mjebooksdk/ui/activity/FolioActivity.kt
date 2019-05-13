@@ -431,9 +431,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 addBookmarkDialog.show();
                 var folioPageFragment: FolioPageFragment? = currentFragment ?: return false
                 entryReadLocator = folioPageFragment!!.getCurrentReadLocator()
-                // TODO get current read location here
-                var readLocation: ReadLocation = ReadLocation()
-                readLocation.title = "hello there"
+                var readLocation = ReadLocation()
+                readLocation.title = addBookmarkDialog.bookmarkTitle
                 readLocation.id = UUID.randomUUID().toString()
                 readLocation.location = entryReadLocator?.toJson()
                 addBookmarkDialog.setAddBookmarkListener(IAddBookmarkDialogListener {

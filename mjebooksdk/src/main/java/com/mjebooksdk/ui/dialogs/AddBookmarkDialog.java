@@ -12,7 +12,8 @@ public class AddBookmarkDialog extends NoTitleDialog implements View.OnClickList
 
     private IAddBookmarkDialogListener addBookmarkListener;
     private Button btnOK, btnCancel;
-    private EditText edtAddFavorite;
+    private EditText edtAddTitle;
+    private String bookmarkTitle;
 
     public AddBookmarkDialog(@NonNull Context context) {
         super(context);
@@ -23,7 +24,7 @@ public class AddBookmarkDialog extends NoTitleDialog implements View.OnClickList
     protected void initViews() {
         btnOK = findViewById(R.id.btnOK);
         btnCancel = findViewById(R.id.btnCancel);
-        edtAddFavorite = findViewById(R.id.edtAddFavorite);
+        edtAddTitle = findViewById(R.id.edtAddTitle);
         btnOK.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
     }
@@ -49,6 +50,10 @@ public class AddBookmarkDialog extends NoTitleDialog implements View.OnClickList
 
     public void setAddBookmarkListener(IAddBookmarkDialogListener addBookmarkListener) {
         this.addBookmarkListener = addBookmarkListener;
+    }
+
+    public String getBookmarkTitle() {
+        return edtAddTitle.getText().toString();
     }
 
 }
