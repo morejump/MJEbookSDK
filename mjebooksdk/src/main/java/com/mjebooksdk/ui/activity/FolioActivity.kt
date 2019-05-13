@@ -432,12 +432,15 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 var folioPageFragment: FolioPageFragment? = currentFragment ?: return false
                 entryReadLocator = folioPageFragment!!.getCurrentReadLocator()
                 var readLocation = ReadLocation()
-                readLocation.title = addBookmarkDialog.bookmarkTitle
                 readLocation.id = UUID.randomUUID().toString()
                 readLocation.location = entryReadLocator?.toJson()
                 addBookmarkDialog.setAddBookmarkListener(IAddBookmarkDialogListener {
+                    readLocation.title = it
                     readLocationDatabase.addReadLocation(readLocation)
+
                 })
+
+
                 return true
             }
             R.id.itemBookmarkList -> {
