@@ -68,12 +68,13 @@ public class BookmarkActivity extends AppCompatActivity implements IBookmarkList
         updateBookmarkDialog.show();
         updateBookmarkDialog.setUpdateListner(new IUpdateBookmarkDialogListner() {
             @Override
-            public void updateBookmark() {
-                readLocation.setTitle(updateBookmarkDialog.getBookmarkTitle());
+            public void updateBookmark(String title) {
+                readLocation.setTitle(title);
                 readLocationDao.updateReadLocation(readLocation);
                 bookmarkAdapter.setData(readLocationDao.getAllReadLocation());
             }
         });
+
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import com.mjebooksdk.R;
 import com.mjebooksdk.ui.callbacks.IAddBookmarkDialogListener;
@@ -13,7 +14,6 @@ public class AddBookmarkDialog extends NoTitleDialog implements View.OnClickList
     private IAddBookmarkDialogListener addBookmarkListener;
     private Button btnOK, btnCancel;
     private EditText edtAddTitle;
-    private String bookmarkTitle;
 
     public AddBookmarkDialog(@NonNull Context context) {
         super(context);
@@ -36,11 +36,15 @@ public class AddBookmarkDialog extends NoTitleDialog implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-
+        String title = edtAddTitle.getText().toString();
         int i = view.getId();
         if (i == R.id.btnOK) {
+            if (title == null || title.isEmpty()){
+                Toast.makeText(getContext(),R.string.txt_must_type_title, Toast.LENGTH_LONG ).show();
+                return;
+            }
             if (addBookmarkListener != null) {
-                addBookmarkListener.addBookmark();
+                addBookmarkListener.addBookmark(title);
             }
             dismiss();
         } else if (i == R.id.btnCancel) {
@@ -52,8 +56,6 @@ public class AddBookmarkDialog extends NoTitleDialog implements View.OnClickList
         this.addBookmarkListener = addBookmarkListener;
     }
 
-    public String getBookmarkTitle() {
-        return edtAddTitle.getText().toString();
-    }
+
 
 }
