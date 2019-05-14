@@ -135,5 +135,6 @@
     <string name="add_new_title">Nhập tiêu đề mới</string>
     <string name="txt_must_type_title">Bạn phải nhập tiêu đề</string>
     <string name="txt_must_type_new_title">Bạn phải nhập tiêu đề mới</string>
+    <string name="no_bookmark_save">Không có mục nào được lưu</string>
 
 </resources>
