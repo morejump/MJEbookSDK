@@ -42,4 +42,11 @@ public class MockReadLocationImpl implements IReadLocationDao {
         }
         return readLocations;
     }
+
+    @Override
+    public void updateReadLocationByTitle(ReadLocation readLocation, String title) {
+
+    }
+
+
 }

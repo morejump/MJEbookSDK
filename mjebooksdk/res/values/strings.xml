@@ -133,5 +133,7 @@
     <string name="delete">xóa</string>
     <string name="update_bookmark">Thay đổi bookmark</string>
     <string name="add_new_title">Nhập tiêu đề mới</string>
+    <string name="txt_must_type_title">Bạn phải nhập tiêu đề</string>
+    <string name="txt_must_type_new_title">Bạn phải nhập tiêu đề mới</string>
 
 </resources>

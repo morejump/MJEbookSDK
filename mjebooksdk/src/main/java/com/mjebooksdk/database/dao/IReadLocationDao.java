@@ -15,5 +15,7 @@ public interface IReadLocationDao {
 
     List<ReadLocation> getAllReadLocation();
 
+    void updateReadLocationByTitle(ReadLocation readLocation, String title);
+
 
 }

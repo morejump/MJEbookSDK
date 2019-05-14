@@ -38,8 +38,8 @@ public class UpdateBookmarkDialog extends NoTitleDialog implements View.OnClickL
         String title = edtAddTitle.getText().toString();
         int id = view.getId();
         if (id == R.id.btnOK) {
-            if (title == null || title.isEmpty()){
-                Toast.makeText(getContext(),"Type title plz", Toast.LENGTH_LONG ).show();
+            if (title == null || title.isEmpty()) {
+                Toast.makeText(getContext(), R.string.txt_must_type_new_title, Toast.LENGTH_LONG).show();
                 return;
             }
             if (updateListner != null) {

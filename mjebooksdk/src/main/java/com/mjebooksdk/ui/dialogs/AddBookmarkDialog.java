@@ -39,8 +39,8 @@ public class AddBookmarkDialog extends NoTitleDialog implements View.OnClickList
         String title = edtAddTitle.getText().toString();
         int i = view.getId();
         if (i == R.id.btnOK) {
-            if (title == null || title.isEmpty()){
-                Toast.makeText(getContext(),"Type title plz", Toast.LENGTH_LONG ).show();
+            if (title == null || title.isEmpty()) {
+                Toast.makeText(getContext(), R.string.txt_must_type_title, Toast.LENGTH_LONG).show();
                 return;
             }
             if (addBookmarkListener != null) {
@@ -55,7 +55,6 @@ public class AddBookmarkDialog extends NoTitleDialog implements View.OnClickList
     public void setAddBookmarkListener(IAddBookmarkDialogListener addBookmarkListener) {
         this.addBookmarkListener = addBookmarkListener;
     }
-
 
 
 }
