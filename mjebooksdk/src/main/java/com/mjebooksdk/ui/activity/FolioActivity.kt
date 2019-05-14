@@ -242,6 +242,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Utils.isFistTimeOpenApp = SharedPreferenceUtil.getFirstTimeOpenApp(this)
+        if (Utils.isFistTimeOpenApp){
+            SharedPreferenceUtil.saveFirstTimeOpenApp(this, false);
+        }
         folioReader =  FolioReader.get()
         val ratingDialog = RatingDialog.Builder(this)
             .threshold(4f)
@@ -818,7 +822,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
      */
     override fun goToChapter(href: String): Boolean {
         // TODO addReadLocation inter ads here
-        mInterstitialAd.show();
+       // mInterstitialAd.show();
+        Utils.shouldShowInterAds(this)
         mInterstitialAd.adListener = object : AdListener() {
             override fun onAdClosed() {
                 mInterstitialAd.loadAd(AdRequest.Builder().build())

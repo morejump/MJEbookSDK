@@ -10,8 +10,22 @@ import java.util.Set;
  * Created by PC on 6/9/2016.
  */
 public class SharedPreferenceUtil {
+
+    public static final String FIST_TIME_OPEN_APP_KEY = "FIST_TIME_OPEN_APP_KEY";
     public static final String SENT_TOKEN_TO_SERVER = "sentTokenToServer";
     public static final String REGISTRATION_COMPLETE = "registrationComplete";
+
+    public static void saveFirstTimeOpenApp(Context context, boolean isFirstTime) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.putBoolean(FIST_TIME_OPEN_APP_KEY, isFirstTime);
+        edit.commit();
+    }
+
+    public static boolean getFirstTimeOpenApp(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getBoolean(FIST_TIME_OPEN_APP_KEY, true);
+    }
 
     public static void putSharedPreferencesInt(Context context, String key, int value) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
