@@ -9,9 +9,10 @@
 
     <androidx.appcompat.widget.Toolbar
             android:theme="@style/ToolbarTheme"
+            android:elevation="3dp"
             android:id="@+id/toolbar"
-            android:background="#5aaf49"
-            app:titleTextColor="@color/white"
+            android:background="@color/white"
+            app:titleTextColor="@color/black"
             app:title="@string/title_toolbar_bookmark"
             android:foregroundTint="@color/green_color"
             android:layout_width="match_parent"
