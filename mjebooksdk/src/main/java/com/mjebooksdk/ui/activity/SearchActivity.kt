@@ -21,6 +21,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
 import com.mjebooksdk.Config
 import com.mjebooksdk.R
 import com.mjebooksdk.database.locators.SearchLocator
@@ -50,7 +53,7 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
         ITEM_SELECTED(2),
         BACK_BUTTON_PRESSED(3)
     }
-
+    private lateinit var mInterstitialAd: InterstitialAd
     private var spineSize: Int = 0
     private lateinit var searchUri: Uri
     private lateinit var searchView: FolioSearchView
@@ -96,6 +99,14 @@ class SearchActivity : AppCompatActivity(), OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.v(LOG_TAG, "-> onCreate")
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = getString(R.string.inter_ads_id)
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+        mInterstitialAd.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                mInterstitialAd.loadAd(AdRequest.Builder().build())
+            }
+        }
 
         val config: Config = AppUtil.getSavedConfig(this)!!
         if (config.isNightMode) {

@@ -318,6 +318,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         mInterstitialAd = InterstitialAd(this)
         mInterstitialAd.adUnitId = getString(R.string.inter_ads_id)
         mInterstitialAd.loadAd(AdRequest.Builder().build())
+        mInterstitialAd.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                mInterstitialAd.loadAd(AdRequest.Builder().build())
+            }
+        }
         // Banner ads
         mAdView = findViewById(R.id.adView)
         val adRequest = AdRequest.Builder().build()
@@ -821,14 +826,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
      * @return true if href is of EPUB or false if other link
      */
     override fun goToChapter(href: String): Boolean {
-        // TODO addReadLocation inter ads here
-       // mInterstitialAd.show();
-        Utils.shouldShowInterAds(this)
-        mInterstitialAd.adListener = object : AdListener() {
-            override fun onAdClosed() {
-                mInterstitialAd.loadAd(AdRequest.Builder().build())
-            }
+        if (Utils.shouldShowInterAds(this)){
+            mInterstitialAd.show();
         }
+
         for (link in spine!!) {
             if (href.contains(link.href!!)) {
                 currentChapterIndex = spine!!.indexOf(link)
