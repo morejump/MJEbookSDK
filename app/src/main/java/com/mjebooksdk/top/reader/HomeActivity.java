@@ -48,6 +48,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
         SharePreferenceManager.init(this);
         folioReader = FolioReader.get()
                 .setOnHighlightListener(this)

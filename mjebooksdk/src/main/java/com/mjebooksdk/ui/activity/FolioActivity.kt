@@ -1141,11 +1141,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         }
     }
 
-
     override fun onBackPressed() {
-        //super.onBackPressed()
-        Toast.makeText(this, "dell back lai nhe", Toast.LENGTH_LONG).show()
+
     }
-
-
 }
