@@ -24,14 +24,17 @@
 
     <TextView
             android:id="@+id/txtTitle"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_toRightOf="@id/imgFavorite"
+            android:layout_toLeftOf="@id/imgEdit"
+            android:layout_marginRight="@dimen/normal_margin"
             android:text="ABC Station"
             android:textColor="@color/blue_color"
             android:textStyle="bold"/>
-
 
     <ImageView
             android:id="@+id/imgDelete"
