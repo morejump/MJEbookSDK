@@ -1141,7 +1141,17 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         }
     }
 
+    private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            finish()
+            System.exit(0);
+            return
+        }
 
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, " Ấn lại để thoát ứng dụng", Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
 }
