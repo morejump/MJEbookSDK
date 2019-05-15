@@ -827,9 +827,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
      * @return true if href is of EPUB or false if other link
      */
     override fun goToChapter(href: String): Boolean {
-        if (Utils.shouldShowInterAds(this)){
-            mInterstitialAd.show();
-        }
         for (link in spine!!) {
             if (href.contains(link.href!!)) {
                 currentChapterIndex = spine!!.indexOf(link)
@@ -843,8 +840,16 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         return false
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+     fun showInterAds() {
+        if (Utils.shouldShowInterAds(this)){
+            Handler().postDelayed({
+                mInterstitialAd.show();
+            }, 1000)
+        }
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        showInterAds()
         if (requestCode == RequestCode.SEARCH.value) {
             Log.v(LOG_TAG, "-> onActivityResult -> " + RequestCode.SEARCH)
 
