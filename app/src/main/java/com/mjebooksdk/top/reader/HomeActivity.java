@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity
 
         folioReader.setReadLocator(lastReadLocator);
         folioReader.setConfig(config, true)
-                .openBook("file:///android_asset/daichuate.epub");
+                .openBook("file:///android_asset/tamquocdiennghia.epub");
 
     }
 

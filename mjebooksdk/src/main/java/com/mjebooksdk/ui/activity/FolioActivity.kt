@@ -896,7 +896,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             config.allowedDirection = Config.AllowedDirection.ONLY_VERTICAL
             folioReader.setReadLocator(ReadLocator.fromJson(readLocation.location))
             folioReader.setConfig(config, true)
-                .openBook("file:///android_asset/daichuate.epub")
+                .openBook("file:///android_asset/tamquocdiennghia.epub")
         }
     }
 
