@@ -56,13 +56,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test.ext:junit:1.0.0"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.10.0@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.10.0@aar') {
         transitive = true;
     }
 
     implementation project(':mjebooksdk')
-    //implementation "com.folioreader:folioreader:$versions.folioreaderSdk"
-
     implementation "com.fasterxml.jackson.core:jackson-core:$versions.jackson"
     implementation "com.fasterxml.jackson.core:jackson-annotations:$versions.jackson"
     implementation "com.fasterxml.jackson.core:jackson-databind:$versions.jackson"

@@ -1144,8 +1144,10 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
         if (doubleBackToExitPressedOnce) {
-            finish()
-            System.exit(0);
+            var homeIntent = Intent(Intent.ACTION_MAIN);
+            homeIntent.addCategory(Intent.CATEGORY_HOME);
+            homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(homeIntent);
             return
         }
 
