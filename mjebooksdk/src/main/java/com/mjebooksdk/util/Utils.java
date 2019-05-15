@@ -8,7 +8,7 @@ public class Utils {
     private static int countAction;
     public static int TIME_TO_SHOW_INTER = 3;
     public static boolean isFistTimeOpenApp;
-    public static String DEVELOPER_ID = "TopLibrary";    // TODO  change this developer id in release version
+    public static String DEVELOPER_ID = "morejump";
 
     public static void readOtherStory(Context context) {
         try {

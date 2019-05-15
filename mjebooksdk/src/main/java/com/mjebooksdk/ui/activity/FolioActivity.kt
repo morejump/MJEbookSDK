@@ -1106,7 +1106,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             Constants.WRITE_EXTERNAL_STORAGE_REQUEST -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 setupBook()
             } else {
-                Toast.makeText(this, getString(R.string.cannot_access_epub_message), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.toast_need_permission), Toast.LENGTH_LONG).show()
                 finish()
             }
         }
