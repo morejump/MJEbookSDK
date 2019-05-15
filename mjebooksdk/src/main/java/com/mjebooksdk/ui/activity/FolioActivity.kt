@@ -323,10 +323,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 mInterstitialAd.loadAd(AdRequest.Builder().build())
             }
         }
-        // Banner ads
-        mAdView = findViewById(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        mAdView.loadAd(adRequest)
+        if (!Utils.isFistTimeOpenApp) {
+            mAdView = findViewById(R.id.adView)
+            val adRequest = AdRequest.Builder().build()
+            mAdView.loadAd(adRequest)
+        }
     }
 
     private fun initActionBar() {
@@ -829,7 +830,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         if (Utils.shouldShowInterAds(this)){
             mInterstitialAd.show();
         }
-
         for (link in spine!!) {
             if (href.contains(link.href!!)) {
                 currentChapterIndex = spine!!.indexOf(link)
