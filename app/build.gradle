@@ -2,13 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'io.fabric'
 
 android {
 
     compileSdkVersion versions.androidCompileSdk
 
     defaultConfig {
-        applicationId "com.folioreader.android.sample"
+        applicationId "mj.top.reader.offlinebook"
         minSdkVersion versions.androidMinSdk
         targetSdkVersion versions.androidTargetSdk
         versionCode versions.projectVersionCode
@@ -55,6 +56,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.test.ext:junit:1.0.0"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    compile('com.crashlytics.sdk.android:crashlytics:2.10.0@aar') {
+        transitive = true;
+    }
 
     implementation project(':mjebooksdk')
     //implementation "com.folioreader:folioreader:$versions.folioreaderSdk"

@@ -17,9 +17,12 @@ package com.mjebooksdk.top.reader;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import com.crashlytics.android.Crashlytics;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mjebooksdk.Config;
@@ -31,6 +34,7 @@ import com.mjebooksdk.ui.base.OnSaveHighlight;
 import com.mjebooksdk.util.AppUtil;
 import com.mjebooksdk.util.OnHighlightListener;
 import com.mjebooksdk.util.ReadLocatorListener;
+import io.fabric.sdk.android.Fabric;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -48,6 +52,7 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_home);
         SharePreferenceManager.init(this);
         folioReader = FolioReader.get()
