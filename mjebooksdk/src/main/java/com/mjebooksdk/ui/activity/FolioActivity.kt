@@ -34,6 +34,12 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 import com.mjebooksdk.Config
 import com.mjebooksdk.Constants
 import com.mjebooksdk.Constants.*
@@ -300,20 +306,26 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         initActionBar()
         initMediaController()
+        Dexter.withActivity(this)
+            .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            .withListener(object : PermissionListener {
+                override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                    setupBook()
+                }
 
-        if (ContextCompat.checkSelfPermission(
-                this@FolioActivity,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this@FolioActivity,
-                Constants.getWriteExternalStoragePerms(),
-                Constants.WRITE_EXTERNAL_STORAGE_REQUEST
-            )
-        } else {
-            setupBook()
-        }
+                override fun onPermissionRationaleShouldBeShown(
+                    permission: PermissionRequest?,
+                    token: PermissionToken?
+                ) {
+                   token?.continuePermissionRequest()
+                }
+
+                override fun onPermissionDenied(response: PermissionDeniedResponse?) {
+                        Toast.makeText(applicationContext, getString(R.string.toast_need_permission), Toast.LENGTH_LONG).show()
+                }
+            })
+            .check();
+
         // Intersitial ads
         mInterstitialAd = InterstitialAd(this)
         mInterstitialAd.adUnitId = getString(R.string.inter_ads_id)
@@ -1101,16 +1113,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         )
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        when (requestCode) {
-            Constants.WRITE_EXTERNAL_STORAGE_REQUEST -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                setupBook()
-            } else {
-                Toast.makeText(this, getString(R.string.toast_need_permission), Toast.LENGTH_LONG).show()
-                finish()
-            }
-        }
-    }
 
     override fun getDirection(): Config.Direction {
         return direction
