@@ -139,5 +139,7 @@
     <string name="txt_must_type_new_title">Bạn phải nhập tiêu đề mới</string>
     <string name="no_bookmark_save">Không có mục nào được lưu</string>
     <string name="toast_need_permission">Bạn cần cấp quyền để sử dụng ứng dụng</string>
+    <string name="search_in_story">Tìm trong truyện</string>
+    <string name="muc_luc">Mục lục</string>
 
 </resources>
