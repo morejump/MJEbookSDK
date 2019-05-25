@@ -18,7 +18,7 @@ import com.mjebooksdk.ui.activity.FolioActivity;
 import com.mjebooksdk.ui.base.OnSaveHighlight;
 import com.mjebooksdk.ui.base.SaveReceivedHighlightTask;
 import com.mjebooksdk.util.OnHighlightListener;
-import com.mjebooksdk.util.ReadLocatorListener;
+import com.mjebooksdk.util.SharePreferenceManager;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -26,10 +26,6 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-/**
- * Created by avez raj on 9/13/2017.
- */
 
 public class FolioReader {
 
@@ -52,12 +48,13 @@ public class FolioReader {
     private boolean overrideConfig;
     private int portNumber = Constants.DEFAULT_PORT_NUMBER;
     private OnHighlightListener onHighlightListener;
-    private ReadLocatorListener readLocatorListener;
     private OnClosedListener onClosedListener;
     private ReadLocator readLocator;
     private String fileNameEpub;
-//    private String hello = ""
-
+    private boolean isShowLastLocation;
+    private String bannerAdsId;
+    private String interAdsId;
+    private int showInterAdsAfter;
     @Nullable
     public Retrofit retrofit;
     @Nullable
@@ -88,22 +85,15 @@ public class FolioReader {
     private BroadcastReceiver readLastLocatorReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
-            ReadLocator readLocator =
-                    (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_LAST_READ_LOCATOR);
-            if (readLocatorListener != null)
-                readLocatorListener.saveReadLastLocator(readLocator);
+            ReadLocator readLocator = (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_LAST_READ_LOCATOR);
+            SharePreferenceManager.setLastReadLocator(readLocator.toJson());
         }
     };
 
     private BroadcastReceiver readCurrentLocatorReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-
-            ReadLocator readLocator =
-                    (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_CURRENT_READ_LOCATOR);
-            if (readLocatorListener != null)
-                readLocatorListener.saveReadCurrentLocator(readLocator);
+            ReadLocator readLocator = (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_CURRENT_READ_LOCATOR);
         }
     };
 
@@ -116,7 +106,6 @@ public class FolioReader {
     };
 
     public static FolioReader get() {
-
         if (singleton == null) {
             synchronized (FolioReader.class) {
                 if (singleton == null) {
@@ -149,8 +138,13 @@ public class FolioReader {
     }
 
 
-    public FolioReader openBookInAssetsFolder() {
+    public FolioReader openBook() {
+        SharePreferenceManager.init(context);
         if (fileNameEpub != null || !fileNameEpub.isEmpty()) {
+            if (isShowLastLocation){
+                ReadLocator lastReadLocator = ReadLocator.fromJson(SharePreferenceManager.getLastReadLocator(SharePreferenceManager.LAST_READ_LOCATOR_KEY));
+                setReadLocator(lastReadLocator);
+            }
             Intent intent = getIntentFromUrl(fileNameEpub, 0);
             context.startActivity(intent);
         }
@@ -255,11 +249,6 @@ public class FolioReader {
         return singleton;
     }
 
-    public FolioReader setReadLocatorListener(ReadLocatorListener readLocatorListener) {
-        this.readLocatorListener = readLocatorListener;
-        return singleton;
-    }
-
     public FolioReader setOnClosedListener(OnClosedListener onClosedListener) {
         this.onClosedListener = onClosedListener;
         return singleton;
@@ -298,7 +287,6 @@ public class FolioReader {
         if (singleton != null) {
             singleton.readLocator = null;
             singleton.onHighlightListener = null;
-            singleton.readLocatorListener = null;
             singleton.onClosedListener = null;
         }
     }
@@ -331,4 +319,42 @@ public class FolioReader {
         }
         return singleton;
     }
+
+    public String getBannerAdsId() {
+        return bannerAdsId;
+    }
+
+    public FolioReader setBannerAdsId(String bannerAdsId) {
+        this.bannerAdsId = bannerAdsId;
+        return singleton;
+    }
+
+    public String getInterAdsId() {
+        return interAdsId;
+    }
+
+    public FolioReader setInterAdsId(String interAdsId) {
+        this.interAdsId = interAdsId;
+        return singleton;
+    }
+
+
+    public int getShowInterAdsAfter() {
+        return showInterAdsAfter;
+    }
+
+    public FolioReader setShowInterAdsAfter(int showInterAdsAfter) {
+        this.showInterAdsAfter = showInterAdsAfter;
+        return singleton;
+    }
+
+    public boolean isShowLastLocation() {
+        return isShowLastLocation;
+    }
+
+    public FolioReader setShowLastLocation(boolean showLastLocation) {
+        isShowLastLocation = showLastLocation;
+        return singleton;
+    }
+
 }

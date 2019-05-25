@@ -7,7 +7,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -26,7 +25,6 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.codemybrainsout.ratingdialog.RatingDialog
@@ -248,6 +246,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        SharePreferenceManager.init(this)
         Utils.isFistTimeOpenApp = SharedPreferenceUtil.getFirstTimeOpenApp(this)
         if (Utils.isFistTimeOpenApp){
             SharedPreferenceUtil.saveFirstTimeOpenApp(this, false);
@@ -908,7 +907,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             config.allowedDirection = Config.AllowedDirection.ONLY_VERTICAL
             folioReader.setReadLocator(ReadLocator.fromJson(readLocation.location))
             folioReader.setConfig(config, true)
-                .openBookInAssetsFolder()
+                .openBook()
         }
     }
 
