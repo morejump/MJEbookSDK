@@ -44,6 +44,8 @@ public class FolioReader {
     public static final String ACTION_SAVE_READ_CURRENT_LOCATOR = "com.folioreader.action.SAVE_READ_CURRENT_LOCATOR";
     public static final String ACTION_CLOSE_FOLIOREADER = "com.folioreader.action.CLOSE_FOLIOREADER";
     public static final String ACTION_FOLIOREADER_CLOSED = "com.folioreader.action.FOLIOREADER_CLOSED";
+    public static final String ASSETS_FOLDER_FILE_PREFIX = "file:///android_asset/";
+    public static final String EPUB_EXTENSION_FILE = ".epub";
 
     private Context context;
     private Config config;
@@ -53,6 +55,8 @@ public class FolioReader {
     private ReadLocatorListener readLocatorListener;
     private OnClosedListener onClosedListener;
     private ReadLocator readLocator;
+    private String fileNameEpub;
+//    private String hello = ""
 
     @Nullable
     public Retrofit retrofit;
@@ -144,31 +148,40 @@ public class FolioReader {
                 new IntentFilter(ACTION_FOLIOREADER_CLOSED));
     }
 
-    public FolioReader openBook(String assetOrSdcardPath) {
-        Intent intent = getIntentFromUrl(assetOrSdcardPath, 0);
-        context.startActivity(intent);
+
+    public FolioReader openBookInAssetsFolder() {
+        if (fileNameEpub != null || !fileNameEpub.isEmpty()) {
+            Intent intent = getIntentFromUrl(fileNameEpub, 0);
+            context.startActivity(intent);
+        }
         return singleton;
     }
 
-    public FolioReader openBook(int rawId) {
-        Intent intent = getIntentFromUrl(null, rawId);
-        context.startActivity(intent);
-        return singleton;
-    }
+//    public FolioReader openBook(String assetOrSdcardPath) {
+//        Intent intent = getIntentFromUrl(assetOrSdcardPath, 0);
+//        context.startActivity(intent);
+//        return singleton;
+//    }
 
-    public FolioReader openBook(String assetOrSdcardPath, String bookId) {
-        Intent intent = getIntentFromUrl(assetOrSdcardPath, 0);
-        intent.putExtra(EXTRA_BOOK_ID, bookId);
-        context.startActivity(intent);
-        return singleton;
-    }
-
-    public FolioReader openBook(int rawId, String bookId) {
-        Intent intent = getIntentFromUrl(null, rawId);
-        intent.putExtra(EXTRA_BOOK_ID, bookId);
-        context.startActivity(intent);
-        return singleton;
-    }
+//    public FolioReader openBook(int rawId) {
+//        Intent intent = getIntentFromUrl(null, rawId);
+//        context.startActivity(intent);
+//        return singleton;
+//    }
+//
+//    public FolioReader openBook(String assetOrSdcardPath, String bookId) {
+//        Intent intent = getIntentFromUrl(assetOrSdcardPath, 0);
+//        intent.putExtra(EXTRA_BOOK_ID, bookId);
+//        context.startActivity(intent);
+//        return singleton;
+//    }
+//
+//    public FolioReader openBook(int rawId, String bookId) {
+//        Intent intent = getIntentFromUrl(null, rawId);
+//        intent.putExtra(EXTRA_BOOK_ID, bookId);
+//        context.startActivity(intent);
+//        return singleton;
+//    }
 
     private Intent getIntentFromUrl(String assetOrSdcardPath, int rawId) {
 
@@ -310,5 +323,12 @@ public class FolioReader {
         localBroadcastManager.unregisterReceiver(readLastLocatorReceiver);
         localBroadcastManager.unregisterReceiver(readCurrentLocatorReceiver);
         localBroadcastManager.unregisterReceiver(closedReceiver);
+    }
+
+    public FolioReader setFileNameEpub(String fileNameEpub) {
+        if (fileNameEpub != null && !fileNameEpub.isEmpty()) {
+            this.fileNameEpub = ASSETS_FOLDER_FILE_PREFIX + fileNameEpub + EPUB_EXTENSION_FILE;
+        }
+        return singleton;
     }
 }
