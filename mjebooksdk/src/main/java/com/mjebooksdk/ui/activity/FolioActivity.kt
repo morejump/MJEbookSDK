@@ -328,8 +328,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             .check();
 
         // Intersitial ads
-        mInterstitialAd = InterstitialAd(this)
         if (!folioReader.getInterAdsId().isNullOrEmpty()){
+            mInterstitialAd = InterstitialAd(this)
             mInterstitialAd.adUnitId = folioReader.interAdsId
             mInterstitialAd.loadAd(AdRequest.Builder().build())
             mInterstitialAd.adListener = object : AdListener() {
@@ -339,10 +339,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             }
         }
 
-        if (!Utils.isFistTimeOpenApp) {
-
-
-            if (!folioReader.getBannerAdsId().isNullOrEmpty()){
+        if (!Utils.isFistTimeOpenApp && !folioReader.getBannerAdsId().isNullOrEmpty()) {
                 val adView = AdView(this)
                 var adViewParams  =  ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
                 adView.id = View.generateViewId()
@@ -358,8 +355,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
                 constraintSet.connect(adView.getId(), ConstraintSet.LEFT, mainLayout.getId(), ConstraintSet.LEFT, 0);
                 constraintSet.connect(adView.getId(), ConstraintSet.BOTTOM, mainLayout.getId(), ConstraintSet.BOTTOM, 0);
                 constraintSet.applyTo(mainLayout)
-
-            }
         }
     }
 
@@ -874,11 +869,11 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     }
 
      fun showInterAds() {
-        if (Utils.shouldShowInterAds(this)){
-            Handler().postDelayed({
-                mInterstitialAd.show();
-            }, 1000)
-        }
+         if (Utils.shouldShowInterAds(this) && mInterstitialAd != null) {
+             Handler().postDelayed({
+                 mInterstitialAd.show();
+             }, 1000)
+         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
 
         folioReader.setConfig(config, true)
                 .setShowLastLocation(true)
-                .setInterAdsId("ca-app-pub-3940256099942544/1033173712")
+                .setInterAdsId("dddddddddd")
                 .setBannerAdsId("ca-app-pub-3940256099942544/6300978111")
                 .setShowInterAdsAfter(5)
                 .setFileNameEpub("tamquocdiennghia")
