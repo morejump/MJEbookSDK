@@ -19,6 +19,7 @@ import com.mjebooksdk.ui.base.OnSaveHighlight;
 import com.mjebooksdk.ui.base.SaveReceivedHighlightTask;
 import com.mjebooksdk.util.OnHighlightListener;
 import com.mjebooksdk.util.SharePreferenceManager;
+import com.mjebooksdk.util.Utils;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -55,6 +56,7 @@ public class FolioReader {
     private String bannerAdsId;
     private String interAdsId;
     private int showInterAdsAfter;
+    private String developerId;
     @Nullable
     public Retrofit retrofit;
     @Nullable
@@ -345,6 +347,7 @@ public class FolioReader {
 
     public FolioReader setShowInterAdsAfter(int showInterAdsAfter) {
         this.showInterAdsAfter = showInterAdsAfter;
+        Utils.TIME_TO_SHOW_INTER = showInterAdsAfter;
         return singleton;
     }
 
@@ -354,6 +357,18 @@ public class FolioReader {
 
     public FolioReader setShowLastLocation(boolean showLastLocation) {
         isShowLastLocation = showLastLocation;
+        return singleton;
+    }
+
+    public String getDeveloperId() {
+        return developerId;
+    }
+
+    public FolioReader setDeveloperId(String developerId) {
+        this.developerId = developerId;
+        if (developerId != null && !developerId.isEmpty()) {
+            Utils.DEVELOPER_ID = developerId;
+        }
         return singleton;
     }
 

@@ -22,15 +22,17 @@ public class HomeActivity extends AppCompatActivity {
         folioReader = FolioReader.get();
 
         Config config = AppUtil.getSavedConfig(getApplicationContext());
-        if (config == null)
+        if (config == null){
             config = new Config();
+        }
         config.setAllowedDirection(Config.AllowedDirection.ONLY_VERTICAL);
 
         folioReader.setConfig(config, true)
                 .setShowLastLocation(true)
-                .setInterAdsId("dddddddddd")
+                .setInterAdsId("ca-app-pub-3940256099942544/1033173712")
                 .setBannerAdsId("ca-app-pub-3940256099942544/6300978111")
-                .setShowInterAdsAfter(5)
+                .setShowInterAdsAfter(2)
+                .setDeveloperId("morejump")
                 .setFileNameEpub("tamquocdiennghia")
                 .openBook();
     }
