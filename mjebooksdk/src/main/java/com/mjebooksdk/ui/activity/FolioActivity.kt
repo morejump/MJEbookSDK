@@ -25,13 +25,12 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.codemybrainsout.ratingdialog.RatingDialog
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.*
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -78,7 +77,6 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
     private lateinit var realm: Realm
     private lateinit var mInterstitialAd: InterstitialAd
-    lateinit var mAdView: AdView
     private var bookFileName: String? = null
     private var mFolioPageViewPager: DirectionalViewpager? = null
     private var actionBar: ActionBar? = null
@@ -119,6 +117,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private lateinit var readLocationDatabase: IReadLocationDao
     private lateinit var addBookmarkDialog: AddBookmarkDialog
     private lateinit var folioReader: FolioReader;
+    private lateinit var mainLayout: ConstraintLayout
+    private lateinit var contraintSet: ConstraintSet
 
     companion object {
 
@@ -287,6 +287,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         initDistractionFreeMode(savedInstanceState)
 
         setContentView(R.layout.folio_activity)
+        mainLayout = findViewById(R.id.main)
+        contraintSet = ConstraintSet()
         this.savedInstanceState = savedInstanceState
 
         if (savedInstanceState != null) {
@@ -327,17 +329,37 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         // Intersitial ads
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = getString(R.string.inter_ads_id)
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
-        mInterstitialAd.adListener = object : AdListener() {
-            override fun onAdClosed() {
-                mInterstitialAd.loadAd(AdRequest.Builder().build())
+        if (!folioReader.getInterAdsId().isNullOrEmpty()){
+            mInterstitialAd.adUnitId = folioReader.interAdsId
+            mInterstitialAd.loadAd(AdRequest.Builder().build())
+            mInterstitialAd.adListener = object : AdListener() {
+                override fun onAdClosed() {
+                    mInterstitialAd.loadAd(AdRequest.Builder().build())
+                }
             }
         }
+
         if (!Utils.isFistTimeOpenApp) {
-            mAdView = findViewById(R.id.adView)
-            val adRequest = AdRequest.Builder().build()
-            mAdView.loadAd(adRequest)
+
+
+            if (!folioReader.getBannerAdsId().isNullOrEmpty()){
+                val adView = AdView(this)
+                var adViewParams  =  ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                adView.id = View.generateViewId()
+                adView.layoutParams = adViewParams
+                adView.adSize = AdSize.BANNER
+                adView.adUnitId = folioReader.bannerAdsId
+                val adRequest = AdRequest.Builder().build()
+                adView.loadAd(adRequest)
+                mainLayout.addView(adView)
+                var constraintSet =  ConstraintSet();
+                constraintSet.clone(mainLayout)
+                constraintSet.connect(adView.getId(), ConstraintSet.RIGHT, mainLayout.getId(), ConstraintSet.RIGHT, 0);
+                constraintSet.connect(adView.getId(), ConstraintSet.LEFT, mainLayout.getId(), ConstraintSet.LEFT, 0);
+                constraintSet.connect(adView.getId(), ConstraintSet.BOTTOM, mainLayout.getId(), ConstraintSet.BOTTOM, 0);
+                constraintSet.applyTo(mainLayout)
+
+            }
         }
     }
 
