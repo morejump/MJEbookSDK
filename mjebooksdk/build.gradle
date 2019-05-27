@@ -10,13 +10,13 @@ ext {
     bintrayName = 'folioreader'
 
     publishedGroupId = 'com.folioreader'
-    libraryName = 'FolioReader'
+    libraryName = 'MjEbookReader'
     artifact = 'folioreader'
 
     libraryDescription = 'An epub reader for Android'
 
-    siteUrl = 'https://github.com/FolioReader/FolioReader-Android'
-    gitUrl = 'https://github.com/FolioReader/FolioReader-Android.git'
+    siteUrl = 'https://github.com/MjEbookReader/MjEbookReader-Android'
+    gitUrl = 'https://github.com/MjEbookReader/MjEbookReader-Android.git'
 
     libraryVersion = versions.folioreaderSdk
 

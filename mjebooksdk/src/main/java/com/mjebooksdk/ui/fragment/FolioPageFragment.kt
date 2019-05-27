@@ -23,7 +23,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.mjebooksdk.Config
-import com.mjebooksdk.FolioReader
+import com.mjebooksdk.MjEbookReader
 import com.mjebooksdk.R
 import com.mjebooksdk.mediaoverlay.MediaController
 import com.mjebooksdk.mediaoverlay.MediaControllerCallbacks
@@ -75,7 +75,7 @@ class FolioPageFragment : Fragment(),
             val args = Bundle()
             args.putInt(BUNDLE_SPINE_INDEX, spineIndex)
             args.putString(BUNDLE_BOOK_TITLE, bookTitle)
-            args.putString(FolioReader.EXTRA_BOOK_ID, bookId)
+            args.putString(MjEbookReader.EXTRA_BOOK_ID, bookId)
             args.putSerializable(BUNDLE_SPINE_ITEM, spineRef)
             fragment.arguments = args
             return fragment
@@ -145,7 +145,7 @@ class FolioPageFragment : Fragment(),
         spineIndex = arguments!!.getInt(BUNDLE_SPINE_INDEX)
         mBookTitle = arguments!!.getString(BUNDLE_BOOK_TITLE)
         spineItem = arguments!!.getSerializable(BUNDLE_SPINE_ITEM) as Link
-        mBookId = arguments!!.getString(FolioReader.EXTRA_BOOK_ID)
+        mBookId = arguments!!.getString(MjEbookReader.EXTRA_BOOK_ID)
 
         chapterUrl = Uri.parse(mActivityCallback?.streamerUrl + spineItem.href!!.substring(1))
 
@@ -622,8 +622,8 @@ class FolioPageFragment : Fragment(),
             locations.cfi = cfi
             lastReadLocator = ReadLocator(mBookId!!, href, created, locations)
 
-            val intent = Intent(FolioReader.ACTION_SAVE_READ_LAST_LOCATOR)
-            intent.putExtra(FolioReader.EXTRA_LAST_READ_LOCATOR, lastReadLocator as Parcelable?)
+            val intent = Intent(MjEbookReader.ACTION_SAVE_READ_LAST_LOCATOR)
+            intent.putExtra(MjEbookReader.EXTRA_LAST_READ_LOCATOR, lastReadLocator as Parcelable?)
             LocalBroadcastManager.getInstance(context!!).sendBroadcast(intent)
 
             (this as java.lang.Object).notify()
@@ -641,8 +641,8 @@ class FolioPageFragment : Fragment(),
             locations.cfi = cfi
             lastReadLocator = ReadLocator(mBookId!!, href, created, locations)
 
-            val intent = Intent(FolioReader.ACTION_SAVE_READ_CURRENT_LOCATOR)
-            intent.putExtra(FolioReader.EXTRA_CURRENT_READ_LOCATOR, lastReadLocator as Parcelable?)
+            val intent = Intent(MjEbookReader.ACTION_SAVE_READ_CURRENT_LOCATOR)
+            intent.putExtra(MjEbookReader.EXTRA_CURRENT_READ_LOCATOR, lastReadLocator as Parcelable?)
             LocalBroadcastManager.getInstance(context!!).sendBroadcast(intent)
 
             (this as java.lang.Object).notify()

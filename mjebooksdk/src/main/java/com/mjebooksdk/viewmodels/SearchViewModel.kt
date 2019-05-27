@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mjebooksdk.FolioReader
+import com.mjebooksdk.MjEbookReader
 import com.mjebooksdk.database.locators.SearchItemType
 import com.mjebooksdk.database.locators.SearchLocator
 import com.mjebooksdk.network.R2StreamerApi
@@ -21,7 +21,7 @@ class SearchViewModel : ViewModel() {
     }
 
     var liveAdapterDataBundle: MutableLiveData<Bundle> = MutableLiveData()
-    private var r2StreamerApi: R2StreamerApi? = FolioReader.get().r2StreamerApi
+    private var r2StreamerApi: R2StreamerApi? = MjEbookReader.get().r2StreamerApi
     private var searchCallCount: Int = 0
     private var successSearchCallCount: Int = 0
     private var errorSearchCallCount: Int = 0

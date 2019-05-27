@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat;
 import org.json.JSONObject;
 
 /**
- * Configuration class for FolioReader.
+ * Configuration class for MjEbookReader.
  */
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public class Config implements Parcelable {

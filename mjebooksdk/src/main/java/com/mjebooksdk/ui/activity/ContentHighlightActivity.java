@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentTransaction;
 import com.mjebooksdk.Config;
 import com.mjebooksdk.Constants;
-import com.mjebooksdk.FolioReader;
+import com.mjebooksdk.MjEbookReader;
 import com.mjebooksdk.R;
 import com.mjebooksdk.ui.fragment.HighlightFragment;
 import com.mjebooksdk.ui.fragment.TableOfContentFragment;
@@ -109,7 +109,7 @@ public class ContentHighlightActivity extends AppCompatActivity {
     private void loadHighlightsFragment() {
         findViewById(R.id.btn_contents).setSelected(false);
         findViewById(R.id.btn_highlights).setSelected(true);
-        String bookId = getIntent().getStringExtra(FolioReader.EXTRA_BOOK_ID);
+        String bookId = getIntent().getStringExtra(MjEbookReader.EXTRA_BOOK_ID);
         String bookTitle = getIntent().getStringExtra(Constants.BOOK_TITLE);
         HighlightFragment highlightFragment = HighlightFragment.newInstance(bookId, bookTitle);
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

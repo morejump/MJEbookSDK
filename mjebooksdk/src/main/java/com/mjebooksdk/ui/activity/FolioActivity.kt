@@ -40,7 +40,7 @@ import com.karumi.dexter.listener.single.PermissionListener
 import com.mjebooksdk.Config
 import com.mjebooksdk.Constants
 import com.mjebooksdk.Constants.*
-import com.mjebooksdk.FolioReader
+import com.mjebooksdk.MjEbookReader
 import com.mjebooksdk.R
 import com.mjebooksdk.database.DisplayUnit
 import com.mjebooksdk.database.HighlightImpl
@@ -116,7 +116,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
     private var taskImportance: Int = 0
     private lateinit var readLocationDatabase: IReadLocationDao
     private lateinit var addBookmarkDialog: AddBookmarkDialog
-    private lateinit var folioReader: FolioReader;
+    private lateinit var mjEbookReader: MjEbookReader;
     private lateinit var mainLayout: ConstraintLayout
     private lateinit var contraintSet: ConstraintSet
 
@@ -140,7 +140,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             Log.v(LOG_TAG, "-> closeBroadcastReceiver -> onReceive -> " + intent.action!!)
 
             val action = intent.action
-            if (action != null && action == FolioReader.ACTION_CLOSE_FOLIOREADER) {
+            if (action != null && action == MjEbookReader.ACTION_CLOSE_FOLIOREADER) {
 
                 try {
                     val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
@@ -152,7 +152,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
                 val closeIntent = Intent(applicationContext, FolioActivity::class.java)
                 closeIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                closeIntent.action = FolioReader.ACTION_CLOSE_FOLIOREADER
+                closeIntent.action = MjEbookReader.ACTION_CLOSE_FOLIOREADER
                 this@FolioActivity.startActivity(closeIntent)
             }
         }
@@ -204,7 +204,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         Log.v(LOG_TAG, "-> onNewIntent")
 
         val action = getIntent().action
-        if (action != null && action == FolioReader.ACTION_CLOSE_FOLIOREADER) {
+        if (action != null && action == MjEbookReader.ACTION_CLOSE_FOLIOREADER) {
 
             if (topActivity == null || topActivity == false) {
                 // FolioActivity was already left, so no need to broadcast ReadLocator again.
@@ -232,7 +232,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         topActivity = true
 
         val action = intent.action
-        if (action != null && action == FolioReader.ACTION_CLOSE_FOLIOREADER) {
+        if (action != null && action == MjEbookReader.ACTION_CLOSE_FOLIOREADER) {
             // FolioActivity is topActivity, so need to broadcast ReadLocator.
             finish()
         }
@@ -251,7 +251,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         if (Utils.isFistTimeOpenApp){
             SharedPreferenceUtil.saveFirstTimeOpenApp(this, false);
         }
-        folioReader =  FolioReader.get()
+        mjEbookReader =  MjEbookReader.get()
         val ratingDialog = RatingDialog.Builder(this)
             .threshold(4f)
             .session(7)
@@ -276,7 +276,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
         density = displayMetrics!!.density
         LocalBroadcastManager.getInstance(this).registerReceiver(
             closeBroadcastReceiver,
-            IntentFilter(FolioReader.ACTION_CLOSE_FOLIOREADER)
+            IntentFilter(MjEbookReader.ACTION_CLOSE_FOLIOREADER)
         )
 
         // Fix for screen get turned off while reading
@@ -296,7 +296,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             searchQuery = savedInstanceState.getCharSequence(SearchActivity.BUNDLE_SAVE_SEARCH_QUERY)
         }
 
-        mBookId = intent.getStringExtra(FolioReader.EXTRA_BOOK_ID)
+        mBookId = intent.getStringExtra(MjEbookReader.EXTRA_BOOK_ID)
         mEpubSourceType = intent.extras!!.getSerializable(FolioActivity.INTENT_EPUB_SOURCE_TYPE) as EpubSourceType
         if (mEpubSourceType == EpubSourceType.RAW) {
             mEpubRawId = intent.extras!!.getInt(FolioActivity.INTENT_EPUB_SOURCE_PATH)
@@ -328,9 +328,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             .check();
 
         // Intersitial ads
-        if (!folioReader.getInterAdsId().isNullOrEmpty()){
+        if (!mjEbookReader.getInterAdsId().isNullOrEmpty()){
             mInterstitialAd = InterstitialAd(this)
-            mInterstitialAd.adUnitId = folioReader.interAdsId
+            mInterstitialAd.adUnitId = mjEbookReader.interAdsId
             mInterstitialAd.loadAd(AdRequest.Builder().build())
             mInterstitialAd.adListener = object : AdListener() {
                 override fun onAdClosed() {
@@ -339,13 +339,13 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             }
         }
 
-        if (!Utils.isFistTimeOpenApp && !folioReader.getBannerAdsId().isNullOrEmpty()) {
+        if (!Utils.isFistTimeOpenApp && !mjEbookReader.getBannerAdsId().isNullOrEmpty()) {
                 val adView = AdView(this)
                 var adViewParams  =  ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
                 adView.id = View.generateViewId()
                 adView.layoutParams = adViewParams
                 adView.adSize = AdSize.BANNER
-                adView.adUnitId = folioReader.bannerAdsId
+                adView.adUnitId = mjEbookReader.bannerAdsId
                 val adRequest = AdRequest.Builder().build()
                 adView.loadAd(adRequest)
                 mainLayout.addView(adView)
@@ -504,7 +504,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             intent.putExtra(CHAPTER_SELECTED, "")
         }
 
-        intent.putExtra(FolioReader.EXTRA_BOOK_ID, mBookId)
+        intent.putExtra(MjEbookReader.EXTRA_BOOK_ID, mBookId)
         intent.putExtra(Constants.BOOK_TITLE, bookFileName)
 
         startActivityForResult(intent, RequestCode.CONTENT_HIGHLIGHT.value)
@@ -566,7 +566,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             }
         }
 
-        portNumber = intent.getIntExtra(FolioReader.EXTRA_PORT_NUMBER, Constants.DEFAULT_PORT_NUMBER)
+        portNumber = intent.getIntExtra(MjEbookReader.EXTRA_PORT_NUMBER, Constants.DEFAULT_PORT_NUMBER)
         portNumber = AppUtil.getAvailablePortNumber(portNumber)
 
         r2StreamerServer = Server(portNumber)
@@ -577,7 +577,7 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
 
         r2StreamerServer!!.start()
 
-        FolioReader.initRetrofit(streamerUrl)
+        MjEbookReader.initRetrofit(streamerUrl)
     }
 
     private fun onBookInitFailure() {
@@ -922,8 +922,8 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             var config = AppUtil.getSavedConfig(applicationContext)
             if (config == null) config = Config()
             config.allowedDirection = Config.AllowedDirection.ONLY_VERTICAL
-            folioReader.setReadLocator(ReadLocator.fromJson(readLocation.location))
-            folioReader.setConfig(config, true)
+            mjEbookReader.setReadLocator(ReadLocator.fromJson(readLocation.location))
+            mjEbookReader.setConfig(config, true)
                 .openBook()
         }
     }
@@ -943,9 +943,9 @@ class FolioActivity : AppCompatActivity(), FolioActivityCallback, MediaControlle
             r2StreamerServer!!.stop()
 
         if (isFinishing) {
-            localBroadcastManager.sendBroadcast(Intent(FolioReader.ACTION_FOLIOREADER_CLOSED))
-            FolioReader.get().retrofit = null
-            FolioReader.get().r2StreamerApi = null
+            localBroadcastManager.sendBroadcast(Intent(MjEbookReader.ACTION_FOLIOREADER_CLOSED))
+            MjEbookReader.get().retrofit = null
+            MjEbookReader.get().r2StreamerApi = null
         }
     }
 

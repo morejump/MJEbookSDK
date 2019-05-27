@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.mjebooksdk.Config;
 import com.mjebooksdk.Constants;
-import com.mjebooksdk.FolioReader;
+import com.mjebooksdk.MjEbookReader;
 import com.mjebooksdk.R;
 import com.mjebooksdk.database.HighLight;
 import com.mjebooksdk.database.HighlightImpl;
@@ -40,7 +40,7 @@ public class HighlightFragment extends Fragment implements HighlightAdapter.High
     public static HighlightFragment newInstance(String bookId, String epubTitle) {
         HighlightFragment highlightFragment = new HighlightFragment();
         Bundle args = new Bundle();
-        args.putString(FolioReader.EXTRA_BOOK_ID, bookId);
+        args.putString(MjEbookReader.EXTRA_BOOK_ID, bookId);
         args.putString(Constants.BOOK_TITLE, epubTitle);
         highlightFragment.setArguments(args);
         return highlightFragment;
@@ -63,7 +63,7 @@ public class HighlightFragment extends Fragment implements HighlightAdapter.High
         super.onViewCreated(view, savedInstanceState);
         RecyclerView highlightsView = (RecyclerView) mRootView.findViewById(R.id.rv_highlights);
         Config config = AppUtil.getSavedConfig(getActivity());
-        mBookId = getArguments().getString(FolioReader.EXTRA_BOOK_ID);
+        mBookId = getArguments().getString(MjEbookReader.EXTRA_BOOK_ID);
 
         if (config.isNightMode()) {
             mRootView.findViewById(R.id.rv_highlights).

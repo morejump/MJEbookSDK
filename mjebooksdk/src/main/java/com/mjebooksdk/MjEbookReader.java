@@ -28,10 +28,10 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class FolioReader {
+public class MjEbookReader {
 
     @SuppressLint("StaticFieldLeak")
-    private static FolioReader singleton = null;
+    private static MjEbookReader singleton = null;
 
     public static final String EXTRA_BOOK_ID = "com.folioreader.extra.BOOK_ID";
     public static final String EXTRA_LAST_READ_LOCATOR = "com.folioreader.extra.READ_LAST_LOCATOR";
@@ -64,9 +64,9 @@ public class FolioReader {
 
     public interface OnClosedListener {
         /**
-         * You may call {@link FolioReader#clear()} in this method, if you wouldn't require to open
+         * You may call {@link MjEbookReader#clear()} in this method, if you wouldn't require to open
          * an epub again from the current activity.
-         * Or you may call {@link FolioReader#stop()} in this method, if you wouldn't require to open
+         * Or you may call {@link MjEbookReader#stop()} in this method, if you wouldn't require to open
          * an epub again from your application.
          */
         void onFolioReaderClosed();
@@ -87,7 +87,7 @@ public class FolioReader {
     private BroadcastReceiver readLastLocatorReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            ReadLocator readLocator = (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_LAST_READ_LOCATOR);
+            ReadLocator readLocator = (ReadLocator) intent.getSerializableExtra(MjEbookReader.EXTRA_LAST_READ_LOCATOR);
             SharePreferenceManager.setLastReadLocator(readLocator.toJson());
         }
     };
@@ -95,7 +95,7 @@ public class FolioReader {
     private BroadcastReceiver readCurrentLocatorReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            ReadLocator readLocator = (ReadLocator) intent.getSerializableExtra(FolioReader.EXTRA_CURRENT_READ_LOCATOR);
+            ReadLocator readLocator = (ReadLocator) intent.getSerializableExtra(MjEbookReader.EXTRA_CURRENT_READ_LOCATOR);
         }
     };
 
@@ -107,24 +107,24 @@ public class FolioReader {
         }
     };
 
-    public static FolioReader get() {
+    public static MjEbookReader get() {
         if (singleton == null) {
-            synchronized (FolioReader.class) {
+            synchronized (MjEbookReader.class) {
                 if (singleton == null) {
                     if (AppContext.get() == null) {
                         throw new IllegalStateException("-> context == null");
                     }
-                    singleton = new FolioReader(AppContext.get());
+                    singleton = new MjEbookReader(AppContext.get());
                 }
             }
         }
         return singleton;
     }
 
-    private FolioReader() {
+    private MjEbookReader() {
     }
 
-    private FolioReader(Context context) {
+    private MjEbookReader(Context context) {
         this.context = context;
         DbAdapter.initialize(context);
 
@@ -140,7 +140,7 @@ public class FolioReader {
     }
 
 
-    public FolioReader openBook() {
+    public MjEbookReader openBook() {
         SharePreferenceManager.init(context);
         if (fileNameEpub != null || !fileNameEpub.isEmpty()) {
             if (isShowLastLocation){
@@ -153,26 +153,26 @@ public class FolioReader {
         return singleton;
     }
 
-//    public FolioReader openBook(String assetOrSdcardPath) {
+//    public MjEbookReader openBook(String assetOrSdcardPath) {
 //        Intent intent = getIntentFromUrl(assetOrSdcardPath, 0);
 //        context.startActivity(intent);
 //        return singleton;
 //    }
 
-//    public FolioReader openBook(int rawId) {
+//    public MjEbookReader openBook(int rawId) {
 //        Intent intent = getIntentFromUrl(null, rawId);
 //        context.startActivity(intent);
 //        return singleton;
 //    }
 //
-//    public FolioReader openBook(String assetOrSdcardPath, String bookId) {
+//    public MjEbookReader openBook(String assetOrSdcardPath, String bookId) {
 //        Intent intent = getIntentFromUrl(assetOrSdcardPath, 0);
 //        intent.putExtra(EXTRA_BOOK_ID, bookId);
 //        context.startActivity(intent);
 //        return singleton;
 //    }
 //
-//    public FolioReader openBook(int rawId, String bookId) {
+//    public MjEbookReader openBook(int rawId, String bookId) {
 //        Intent intent = getIntentFromUrl(null, rawId);
 //        intent.putExtra(EXTRA_BOOK_ID, bookId);
 //        context.startActivity(intent);
@@ -213,13 +213,13 @@ public class FolioReader {
      *                       config if it is null in application context or will fetch previously
      *                       saved one while execution.
      */
-    public FolioReader setConfig(Config config, boolean overrideConfig) {
+    public MjEbookReader setConfig(Config config, boolean overrideConfig) {
         this.config = config;
         this.overrideConfig = overrideConfig;
         return singleton;
     }
 
-    public FolioReader setPortNumber(int portNumber) {
+    public MjEbookReader setPortNumber(int portNumber) {
         this.portNumber = portNumber;
         return singleton;
     }
@@ -246,17 +246,17 @@ public class FolioReader {
         singleton.r2StreamerApi = singleton.retrofit.create(R2StreamerApi.class);
     }
 
-    public FolioReader setOnHighlightListener(OnHighlightListener onHighlightListener) {
+    public MjEbookReader setOnHighlightListener(OnHighlightListener onHighlightListener) {
         this.onHighlightListener = onHighlightListener;
         return singleton;
     }
 
-    public FolioReader setOnClosedListener(OnClosedListener onClosedListener) {
+    public MjEbookReader setOnClosedListener(OnClosedListener onClosedListener) {
         this.onClosedListener = onClosedListener;
         return singleton;
     }
 
-    public FolioReader setReadLocator(ReadLocator readLocator) {
+    public MjEbookReader setReadLocator(ReadLocator readLocator) {
         this.readLocator = readLocator;
         return singleton;
     }
@@ -267,22 +267,22 @@ public class FolioReader {
     }
 
     /**
-     * Closes all the activities related to FolioReader.
-     * After closing all the activities of FolioReader, callback can be received in
+     * Closes all the activities related to MjEbookReader.
+     * After closing all the activities of MjEbookReader, callback can be received in
      * {@link OnClosedListener#onFolioReaderClosed()} if implemented.
      * Developer is still bound to call {@link #clear()} or {@link #stop()}
      * for clean up if required.
      */
     public void close() {
-        Intent intent = new Intent(FolioReader.ACTION_CLOSE_FOLIOREADER);
+        Intent intent = new Intent(MjEbookReader.ACTION_CLOSE_FOLIOREADER);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
     /**
      * Nullifies readLocator and listeners.
      * This method ideally should be used in onDestroy() of Activity or Fragment.
-     * Use this method if you want to use FolioReader singleton instance again in the application,
-     * else use {@link #stop()} which destruct the FolioReader singleton instance.
+     * Use this method if you want to use MjEbookReader singleton instance again in the application,
+     * else use {@link #stop()} which destruct the MjEbookReader singleton instance.
      */
     public static synchronized void clear() {
 
@@ -294,9 +294,9 @@ public class FolioReader {
     }
 
     /**
-     * Destructs the FolioReader singleton instance.
+     * Destructs the MjEbookReader singleton instance.
      * Use this method only if you are sure that you won't need to use
-     * FolioReader singleton instance again in application, else use {@link #clear()}.
+     * MjEbookReader singleton instance again in application, else use {@link #clear()}.
      */
     public static synchronized void stop() {
 
@@ -315,7 +315,7 @@ public class FolioReader {
         localBroadcastManager.unregisterReceiver(closedReceiver);
     }
 
-    public FolioReader setFileNameEpub(String fileNameEpub) {
+    public MjEbookReader setFileNameEpub(String fileNameEpub) {
         if (fileNameEpub != null && !fileNameEpub.isEmpty()) {
             this.fileNameEpub = ASSETS_FOLDER_FILE_PREFIX + fileNameEpub + EPUB_EXTENSION_FILE;
         }
@@ -326,7 +326,7 @@ public class FolioReader {
         return bannerAdsId;
     }
 
-    public FolioReader setBannerAdsId(String bannerAdsId) {
+    public MjEbookReader setBannerAdsId(String bannerAdsId) {
         this.bannerAdsId = bannerAdsId;
         return singleton;
     }
@@ -335,7 +335,7 @@ public class FolioReader {
         return interAdsId;
     }
 
-    public FolioReader setInterAdsId(String interAdsId) {
+    public MjEbookReader setInterAdsId(String interAdsId) {
         this.interAdsId = interAdsId;
         return singleton;
     }
@@ -344,7 +344,7 @@ public class FolioReader {
         return showInterAdsAfter;
     }
 
-    public FolioReader setShowInterAdsAfter(int showInterAdsAfter) {
+    public MjEbookReader setShowInterAdsAfter(int showInterAdsAfter) {
         this.showInterAdsAfter = showInterAdsAfter;
         Utils.TIME_TO_SHOW_INTER = showInterAdsAfter;
         return singleton;
@@ -354,7 +354,7 @@ public class FolioReader {
         return isShowLastLocation;
     }
 
-    public FolioReader setShowLastLocation(boolean showLastLocation) {
+    public MjEbookReader setShowLastLocation(boolean showLastLocation) {
         isShowLastLocation = showLastLocation;
         return singleton;
     }
@@ -363,7 +363,7 @@ public class FolioReader {
         return developerId;
     }
 
-    public FolioReader setDeveloperId(String developerId) {
+    public MjEbookReader setDeveloperId(String developerId) {
         this.developerId = developerId;
         if (developerId != null && !developerId.isEmpty()) {
             Utils.DEVELOPER_ID = developerId;

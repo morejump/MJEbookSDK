@@ -12,7 +12,7 @@ public class FolioDatabaseHelper extends SQLiteOpenHelper {
     private static FolioDatabaseHelper mInstance;
     private static SQLiteDatabase myWritableDb;
 
-    public static final String DATABASE_NAME = "FolioReader.db";
+    public static final String DATABASE_NAME = "MjEbookReader.db";
     private static final int DATABASE_VERSION = 2;
 
     public static final String KEY_ID = "_id";
