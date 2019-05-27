@@ -42,19 +42,11 @@ android {
     }
 
     buildTypes {
-        def INTER_ADS_ID = "INTER_ADS_ID"
-        def BANNER_ADS_ID = "BANNER_ADS_ID"
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            buildConfigField "String", INTER_ADS_ID, ""
-//            buildConfigField "String", BANNER_ADS_ID, ""
         }
 
         debug {
             debuggable true
-//            buildConfigField "String", INTER_ADS_ID, ""
-//            buildConfigField "String", BANNER_ADS_ID, ""
         }
     }
 

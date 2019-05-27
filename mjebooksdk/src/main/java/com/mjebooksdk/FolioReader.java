@@ -340,7 +340,6 @@ public class FolioReader {
         return singleton;
     }
 
-
     public int getShowInterAdsAfter() {
         return showInterAdsAfter;
     }
